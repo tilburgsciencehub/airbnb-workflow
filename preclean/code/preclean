@@ -1,0 +1,9 @@
+# put workflow script there
+# download data
+rule download:
+    shell:
+        "python code/download.py"
+
+
+
+

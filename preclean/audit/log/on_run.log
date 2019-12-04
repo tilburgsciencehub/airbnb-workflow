@@ -1,77 +1,89 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  \\studfiles.campus.uvt.nl\files\home\home04\u669074\tisem-airbnb\pr
-> eclean\audit/log/on_run.log
+       log:  /Users/hulai/Github/tisem-airbnb/preclean/code/../audit/log/on_run
+> .log
   log type:  text
- opened on:   3 Dec 2019, 20:20:10
+ opened on:   3 Dec 2019, 23:43:38
 
 . 
-. use "temp/listings.dta", clear
+. use "../temp/listings.dta", clear
 
 . 
-. estpost tabstat price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, ///
+. estpost tabstat price age host_response_rate host_acceptance_rate host_is_sup
+> erhost host_identity_verified accommodates review_scores_rating reviews_per_m
+> onth, ///
 >                 stat(count mean sd min p50 max) c(s)
 
 Summary statistics: count mean sd min p50 max
-     for variables: price age host_response_rate host_acceptance_rate host_is_su
-> perhost host_identity_verified accommodates review_scores_rating reviews_per_m
-> onth
+     for variables: price age host_response_rate host_acceptance_rate host_is_s
+> uperhost host_identity_verified accommodates review_scores_rating reviews_per
+> _month
 
-             |  e(count)    e(mean)      e(sd)     e(min)     e(p50)     e(max) 
--------------+------------------------------------------------------------------
-       price |      3573   169.0728    111.677         10        150        999 
-         age |      3585   2.449468   1.699612   .0027379   2.094456    7.82204 
-host_resp~te |      3114   94.98908   12.51769          0        100        100 
-host_accep~e |      3114   84.17309   21.77925          0         94        100 
-host_is_su~t |      3585   .1135286   .3172821          0          0          1 
-host_ident~d |      3585   .7260809   .4460302          0          1          1 
-accommodates |      3585   3.041283   1.778929          1          2         16 
-review_sco~g |      2772   91.91667   9.531686         20         94        100 
-reviews_pe~h |      2829   1.970908   2.120561        .01       1.17      19.15 
+             |  e(count)    e(mean)      e(sd)     e(min)     e(p50) 
+-------------+-------------------------------------------------------
+       price |      3573   169.0728    111.677         10        150 
+         age |      3585   2.449468   1.699612   .0027379   2.094456 
+host_resp~te |      3114   94.98908   12.51769          0        100 
+host_accep~e |      3114   84.17309   21.77925          0         94 
+host_is_su~t |      3585   .1135286   .3172821          0          0 
+host_ident~d |      3585   .7260809   .4460302          0          1 
+accommodates |      3585   3.041283   1.778929          1          2 
+review_sco~g |      2772   91.91667   9.531686         20         94 
+reviews_pe~h |      2829   1.970908   2.120561        .01       1.17 
 
-. esttab . using "audit/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(f
-> mt(a3)) min p50 max") replace
-(output written to audit/table/sum_listings.txt)
+             |    e(max) 
+-------------+-----------
+       price |       999 
+         age |   7.82204 
+host_resp~te |       100 
+host_accep~e |       100 
+host_is_su~t |         1 
+host_ident~d |         1 
+accommodates |        16 
+review_sco~g |       100 
+reviews_pe~h |     19.15 
+
+. esttab . using "../audit/table/sum_listings.txt", cells("count mean(fmt(a3)) 
+> sd(fmt(a3)) min p50 max") replace
+(output written to ../audit/table/sum_listings.txt)
 
 .                 
 . foreach i of varlist price review_scores_rating reviews_per_month {
   2. hist `i'
-  3. graph export "audit/figure/`i'.pdf", replace
+  3. graph export "../audit/figure/`i'.pdf", replace
   4. }
 (bin=35, start=10, width=28.257143)
-(file audit/figure/price.pdf written in PDF format)
+(file ../audit/figure/price.pdf written in PDF format)
 (bin=34, start=20, width=2.3529412)
-(file audit/figure/review_scores_rating.pdf written in PDF format)
+(file ../audit/figure/review_scores_rating.pdf written in PDF format)
 (bin=34, start=.01, width=.56294118)
-(file audit/figure/reviews_per_month.pdf written in PDF format)
+(file ../audit/figure/reviews_per_month.pdf written in PDF format)
 
 . 
 . scatter price accommodates || lfit price accommodates
 
-. graph export "audit/figure/pri_accom.pdf", replace
-(file audit/figure/pri_accom.pdf written in PDF format)
+. graph export "../audit/figure/pri_accom.pdf", replace
+(file ../audit/figure/pri_accom.pdf written in PDF format)
 
 . scatter price review_scores_rating || lfit price review_scores_rating
 
-. graph export "audit/figure/pri_rating.pdf", replace
-(file audit/figure/pri_rating.pdf written in PDF format)
+. graph export "../audit/figure/pri_rating.pdf", replace
+(file ../audit/figure/pri_rating.pdf written in PDF format)
 
-. scatter review_scores_rating reviews_per_month || lfit review_scores_rating re
-> views_per_month
+. scatter review_scores_rating reviews_per_month || lfit review_scores_rating r
+> eviews_per_month
 
-. graph export "audit/figure/rating_review.pdf", replace
-(file audit/figure/rating_review.pdf written in PDF format)
+. graph export "../audit/figure/rating_review.pdf", replace
+(file ../audit/figure/rating_review.pdf written in PDF format)
 
 . 
 . 
-. use "temp/calendar", clear
+. use "../temp/calendar", clear
 
 . collapse (sum) available (count) listing_id, by(date)
 
-. export delim using "audit/table/sum_cal.txt", delim(tab) replace
-file audit/table/sum_cal.txt saved
+. export delim using "../audit/table/sum_cal.txt", delim(tab) replace
+file ../audit/table/sum_cal.txt saved
 
 . 
 . gen avail_r = available/listing_id
@@ -83,748 +95,11 @@ file audit/table/sum_cal.txt saved
 
 . tsline avail_r
 
-. graph export "audit/figure/available.pdf", replace
-(file audit/figure/available.pdf written in PDF format)
+. graph export "../audit/figure/available.pdf", replace
+(file ../audit/figure/available.pdf written in PDF format)
 
 . 
 . 
 end of do-file
 
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
 
-. use "temp/calendar.dta", clear
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. gen dweek = dofw(date)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. collapse (mean) available, by(dweek)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "temp/calendar.dta", clear
-
-. gen dweek = dofw(date)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "temp/calendar.dta", clear
-
-. gen dweek = dow(date)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. collapse (mean) available, by(dweek)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. replace dweek = 7 if dweek==0
-(1 real change made)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. collapse (mean) available, by(dweek)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. twoway bar available dweek
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. twoway bar available dweek
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. graph export "output/figure/available.pdf", replace
-unable to save PDF file
-r(691);
-
-end of do-file
-
-r(691);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "temp/calendar.dta", clear
-
-. gen dweek = dow(date)
-
-. replace dweek = 7 if dweek==0
-(186,420 real changes made)
-
-. 
-. preserve
-
-. collapse (mean) available, by(dweek)
-
-. twoway bar available dweek
-
-. graph export "output/figure/available.pdf", replace
-unable to save PDF file
-r(691);
-
-end of do-file
-
-r(691);
-
-. pwd
-\\studfiles.campus.uvt.nl\files\home\home04\u669074\tisem-airbnb\preclean
-
-. cd ..
-\\studfiles.campus.uvt.nl\files\home\home04\u669074\tisem-airbnb
-
-. cd analysis
-\\studfiles.campus.uvt.nl\files\home\home04\u669074\tisem-airbnb\analysis
-
-. ls
-  <dir>  12/03/19 18:20  .                 
-  <dir>  12/03/19 18:20  ..                
-   6.0k  12/02/19 17:59  .DS_Store         
-   4.0k  12/03/19 14:25  ._.DS_Store       
-   4.0k  12/03/19 14:25  ._code            
-  <dir>  12/03/19 20:27  code              
-  <dir>  12/03/19 14:25  input             
-  <dir>  12/03/19 20:12  output            
-  <dir>  12/03/19 14:25  temp              
-   6.0k  12/03/19  7:54  _DS_Store         
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "../preclean/temp/calendar.dta", clear
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. gen dweek = dow(date)
-
-. replace dweek = 7 if dweek==0
-(186,420 real changes made)
-
-. 
-. preserve
-
-. collapse (mean) available, by(dweek)
-
-. twoway bar available dweek
-
-. graph export "output/figure/available.pdf", replace
-(file output/figure/available.pdf written in PDF format)
-
-. restore
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. probit availble dweek
-variable availble not found
-r(111);
-
-end of do-file
-
-r(111);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. probit available dweek
-
-Iteration 0:   log likelihood = -906805.05  
-Iteration 1:   log likelihood = -906802.77  
-Iteration 2:   log likelihood = -906802.77  
-
-Probit regression                               Number of obs     =  1,308,525
-                                                LR chi2(1)        =       4.55
-                                                Prob > chi2       =     0.0328
-Log likelihood = -906802.77                     Pseudo R2         =     0.0000
-
-------------------------------------------------------------------------------
-   available |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-       dweek |  -.0011692   .0005479    -2.13   0.033     -.002243   -.0000954
-       _cons |  -.0169882   .0024474    -6.94   0.000     -.021785   -.0121914
-------------------------------------------------------------------------------
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. probit available i.dweek
-
-Iteration 0:   log likelihood = -906805.05  
-Iteration 1:   log likelihood = -906784.86  
-Iteration 2:   log likelihood = -906784.86  
-
-Probit regression                               Number of obs     =  1,308,525
-                                                LR chi2(6)        =      40.37
-                                                Prob > chi2       =     0.0000
-Log likelihood = -906784.86                     Pseudo R2         =     0.0000
-
-------------------------------------------------------------------------------
-   available |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-       dweek |
-          2  |  -.0113337    .004086    -2.77   0.006    -.0193421   -.0033254
-          3  |  -.0080285   .0041053    -1.96   0.051    -.0160748    .0000177
-          4  |  -.0162866   .0041055    -3.97   0.000    -.0243331     -.00824
-          5  |  -.0190305   .0041055    -4.64   0.000    -.0270771   -.0109838
-          6  |  -.0181024   .0041055    -4.41   0.000     -.026149   -.0100557
-          7  |  -.0027702   .0041053    -0.67   0.500    -.0108164    .0052759
-             |
-       _cons |  -.0108644   .0029028    -3.74   0.000    -.0165538   -.0051749
-------------------------------------------------------------------------------
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. estpost probit available i.dweek
-invalid subcommand
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. estpost: probit available i.dweek
-invalid subcommand
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo: probit available i.dweek
-
-Iteration 0:   log likelihood = -906805.05  
-Iteration 1:   log likelihood = -906784.86  
-Iteration 2:   log likelihood = -906784.86  
-
-Probit regression                               Number of obs     =  1,308,525
-                                                LR chi2(6)        =      40.37
-                                                Prob > chi2       =     0.0000
-Log likelihood = -906784.86                     Pseudo R2         =     0.0000
-
-------------------------------------------------------------------------------
-   available |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-       dweek |
-          2  |  -.0113337    .004086    -2.77   0.006    -.0193421   -.0033254
-          3  |  -.0080285   .0041053    -1.96   0.051    -.0160748    .0000177
-          4  |  -.0162866   .0041055    -3.97   0.000    -.0243331     -.00824
-          5  |  -.0190305   .0041055    -4.64   0.000    -.0270771   -.0109838
-          6  |  -.0181024   .0041055    -4.41   0.000     -.026149   -.0100557
-          7  |  -.0027702   .0041053    -0.67   0.500    -.0108164    .0052759
-             |
-       _cons |  -.0108644   .0029028    -3.74   0.000    -.0165538   -.0051749
-------------------------------------------------------------------------------
-(est1 stored)
-
-. estpost using "output/table/probit_avail.txt", replace
-invalid subcommand
-r(198);
-
-end of do-file
-
-r(198);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. esttab using "output/table/probit_avail.txt", replace
-(note: file output/table/probit_avail.txt not found)
-(output written to output/table/probit_avail.txt)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. esttab using "output/table/probit_avail.txt", nogaps replace
-(output written to output/table/probit_avail.txt)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo clear
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "../preclean/temp/listings.dta", clear
-
-. 
-. estpost tabstat price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, ///
->                 stat(count mean sd min p50 max) c(s)
-
-Summary statistics: count mean sd min p50 max
-     for variables: price age host_response_rate host_acceptance_rate host_is_su
-> perhost host_identity_verified accommodates review_scores_rating reviews_per_m
-> onth
-
-             |  e(count)    e(mean)      e(sd)     e(min)     e(p50)     e(max) 
--------------+------------------------------------------------------------------
-       price |      3573   169.0728    111.677         10        150        999 
-         age |      3585   2.449468   1.699612   .0027379   2.094456    7.82204 
-host_resp~te |      3114   94.98908   12.51769          0        100        100 
-host_accep~e |      3114   84.17309   21.77925          0         94        100 
-host_is_su~t |      3585   .1135286   .3172821          0          0          1 
-host_ident~d |      3585   .7260809   .4460302          0          1          1 
-accommodates |      3585   3.041283   1.778929          1          2         16 
-review_sco~g |      2772   91.91667   9.531686         20         94        100 
-reviews_pe~h |      2829   1.970908   2.120561        .01       1.17      19.15 
-
-. esttab . using "audit/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(f
-> mt(a3)) min p50 max") replace
-(note: file audit/table/sum_listings.txt not found)
-file audit/table/sum_listings.txt could not be opened
-r(603);
-
-end of do-file
-
-r(603);
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. use "../preclean/temp/listings.dta", clear
-
-. 
-. estpost tabstat price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, ///
->                 stat(count mean sd min p50 max) c(s)
-
-Summary statistics: count mean sd min p50 max
-     for variables: price age host_response_rate host_acceptance_rate host_is_su
-> perhost host_identity_verified accommodates review_scores_rating reviews_per_m
-> onth
-
-             |  e(count)    e(mean)      e(sd)     e(min)     e(p50)     e(max) 
--------------+------------------------------------------------------------------
-       price |      3573   169.0728    111.677         10        150        999 
-         age |      3585   2.449468   1.699612   .0027379   2.094456    7.82204 
-host_resp~te |      3114   94.98908   12.51769          0        100        100 
-host_accep~e |      3114   84.17309   21.77925          0         94        100 
-host_is_su~t |      3585   .1135286   .3172821          0          0          1 
-host_ident~d |      3585   .7260809   .4460302          0          1          1 
-accommodates |      3585   3.041283   1.778929          1          2         16 
-review_sco~g |      2772   91.91667   9.531686         20         94        100 
-reviews_pe~h |      2829   1.970908   2.120561        .01       1.17      19.15 
-
-. esttab . using "output/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(
-> fmt(a3)) min p50 max") replace
-(note: file output/table/sum_listings.txt not found)
-(output written to output/table/sum_listings.txt)
-
-. 
-. 
-end of do-file
-
-. reg price age host_response_rate host_acceptance_rate host_is_superhost host_i
-> dentity_verified accommodates review_scores_rating reviews_per_month
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    225.34
-       Model |  12368742.4         8   1546092.8   Prob > F        =    0.0000
-    Residual |  17441443.4     2,542  6861.30739   R-squared       =    0.4149
--------------+----------------------------------   Adj R-squared   =    0.4131
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    82.833
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.207109   .9853581     2.24   0.025     .2749225    4.139295
-host_respo~te |   .0204512   .1565699     0.13   0.896    -.2865664    .3274688
-host_accept~e |  -.4427323   .0835516    -5.30   0.000    -.6065685   -.2788961
-host_is_sup~t |   6.032758   4.820613     1.25   0.211     -3.41997    15.48549
-host_identi~d |   1.956839   4.056892     0.48   0.630     -5.99831    9.911988
- accommodates |   34.63103   .8939079    38.74   0.000     32.87816    36.38389
-review_scor~g |   1.073624   .1884236     5.70   0.000     .7041449    1.443104
-reviews_per~h |  -7.548665   .8319554    -9.07   0.000    -9.180045   -5.917286
-        _cons |   4.949387   23.63067     0.21   0.834    -41.38793    51.28671
--------------------------------------------------------------------------------
-
-. reg price age host_response_rate host_acceptance_rate host_is_superhost host_i
-> dentity_verified accommodates review_scores_rating number_of_reviews
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    218.85
-       Model |  12158082.4         8   1519760.3   Prob > F        =    0.0000
-    Residual |  17652103.4     2,542  6944.17914   R-squared       =    0.4078
--------------+----------------------------------   Adj R-squared   =    0.4060
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    83.332
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   5.709391   1.015338     5.62   0.000     3.718417    7.700365
-host_respo~te |  -.0113745   .1575232    -0.07   0.942    -.3202614    .2975124
-host_accept~e |  -.5253304   .0827099    -6.35   0.000    -.6875161   -.3631447
-host_is_sup~t |   8.021254   4.904132     1.64   0.102    -1.595247    17.63775
-host_identi~d |   1.544374    4.08226     0.38   0.705     -6.46052    9.549267
- accommodates |   34.20637   .8995083    38.03   0.000     32.44253    35.97022
-review_scor~g |   .9754306   .1895988     5.14   0.000     .6036468    1.347214
-number_of_r~s |  -.3253177   .0455501    -7.14   0.000    -.4146367   -.2359987
-        _cons |   8.651212   23.78669     0.36   0.716    -37.99206    55.29448
--------------------------------------------------------------------------------
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo: reg price age host_response_rate host_acceptance_rate host_is_superhos
-> t host_identity_verified accommodates review_scores_rating reviews_per_month
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    225.34
-       Model |  12368742.4         8   1546092.8   Prob > F        =    0.0000
-    Residual |  17441443.4     2,542  6861.30739   R-squared       =    0.4149
--------------+----------------------------------   Adj R-squared   =    0.4131
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    82.833
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.207109   .9853581     2.24   0.025     .2749225    4.139295
-host_respo~te |   .0204512   .1565699     0.13   0.896    -.2865664    .3274688
-host_accept~e |  -.4427323   .0835516    -5.30   0.000    -.6065685   -.2788961
-host_is_sup~t |   6.032758   4.820613     1.25   0.211     -3.41997    15.48549
-host_identi~d |   1.956839   4.056892     0.48   0.630     -5.99831    9.911988
- accommodates |   34.63103   .8939079    38.74   0.000     32.87816    36.38389
-review_scor~g |   1.073624   .1884236     5.70   0.000     .7041449    1.443104
-reviews_per~h |  -7.548665   .8319554    -9.07   0.000    -9.180045   -5.917286
-        _cons |   4.949387   23.63067     0.21   0.834    -41.38793    51.28671
--------------------------------------------------------------------------------
-(est1 stored)
-
-. esttab using "output/table/reg_price.txt", nogaps replace
-(note: file output/table/reg_price.txt not found)
-(output written to output/table/reg_price.txt)
-
-. eststo clear
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. foreach i of varlist property_type room_type {
-  2. encode `i', gen(`i'_i) 
-  3. }
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. cap ssc install reghdfe
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo: reg price age host_response_rate host_acceptance_rate host_is_superhos
-> t host_identity_verified accommodates review_scores_rating reviews_per_month
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    225.34
-       Model |  12368742.4         8   1546092.8   Prob > F        =    0.0000
-    Residual |  17441443.4     2,542  6861.30739   R-squared       =    0.4149
--------------+----------------------------------   Adj R-squared   =    0.4131
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    82.833
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.207109   .9853581     2.24   0.025     .2749225    4.139295
-host_respo~te |   .0204512   .1565699     0.13   0.896    -.2865664    .3274688
-host_accept~e |  -.4427323   .0835516    -5.30   0.000    -.6065685   -.2788961
-host_is_sup~t |   6.032758   4.820613     1.25   0.211     -3.41997    15.48549
-host_identi~d |   1.956839   4.056892     0.48   0.630     -5.99831    9.911988
- accommodates |   34.63103   .8939079    38.74   0.000     32.87816    36.38389
-review_scor~g |   1.073624   .1884236     5.70   0.000     .7041449    1.443104
-reviews_per~h |  -7.548665   .8319554    -9.07   0.000    -9.180045   -5.917286
-        _cons |   4.949387   23.63067     0.21   0.834    -41.38793    51.28671
--------------------------------------------------------------------------------
-(est1 stored)
-
-. eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, absorb(property_type_i)
-reghdfe requires the ftools package, which is not installed
-    - install from SSC
-    - install from Github
-(error occurred while loading reghdfe.ado)
-r(9);
-
-end of do-file
-
-r(9);
-
-. ssc install ftools
-checking ftools consistency and verifying not already installed...
-installing into M:\Stata_adofiles\...
-installation complete.
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo: reg price age host_response_rate host_acceptance_rate host_is_superhos
-> t host_identity_verified accommodates review_scores_rating reviews_per_month
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    225.34
-       Model |  12368742.4         8   1546092.8   Prob > F        =    0.0000
-    Residual |  17441443.4     2,542  6861.30739   R-squared       =    0.4149
--------------+----------------------------------   Adj R-squared   =    0.4131
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    82.833
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.207109   .9853581     2.24   0.025     .2749225    4.139295
-host_respo~te |   .0204512   .1565699     0.13   0.896    -.2865664    .3274688
-host_accept~e |  -.4427323   .0835516    -5.30   0.000    -.6065685   -.2788961
-host_is_sup~t |   6.032758   4.820613     1.25   0.211     -3.41997    15.48549
-host_identi~d |   1.956839   4.056892     0.48   0.630     -5.99831    9.911988
- accommodates |   34.63103   .8939079    38.74   0.000     32.87816    36.38389
-review_scor~g |   1.073624   .1884236     5.70   0.000     .7041449    1.443104
-reviews_per~h |  -7.548665   .8319554    -9.07   0.000    -9.180045   -5.917286
-        _cons |   4.949387   23.63067     0.21   0.834    -41.38793    51.28671
--------------------------------------------------------------------------------
-(est2 stored)
-
-. eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, absorb(property_type_i)
-(dropped 2 singleton observations)
-(MWFE estimator converged in 1 iterations)
-
-HDFE Linear regression                            Number of obs   =      2,547
-Absorbing 1 HDFE group                            F(   8,   2529) =     226.89
-                                                  Prob > F        =     0.0000
-                                                  R-squared       =     0.4396
-                                                  Adj R-squared   =     0.4358
-                                                  Within R-sq.    =     0.4178
-                                                  Root MSE        =    81.2407
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.618105   .9761931     2.68   0.007      .703886    4.532325
-host_respo~te |   .0287424   .1539507     0.19   0.852    -.2731399    .3306247
-host_accept~e |  -.3885913   .0825739    -4.71   0.000    -.5505107    -.226672
-host_is_sup~t |   10.05665   4.752248     2.12   0.034     .7379606    19.37535
-host_identi~d |   1.409686   4.003282     0.35   0.725    -6.440358    9.259731
- accommodates |    34.5078   .8834404    39.06   0.000     32.77546    36.24014
-review_scor~g |   1.032027    .186272     5.54   0.000     .6667661    1.397289
-reviews_per~h |  -7.438297   .8168706    -9.11   0.000      -9.0401   -5.836493
-        _cons |   2.207059   23.33763     0.09   0.925    -43.55576    47.96988
--------------------------------------------------------------------------------
-
-Absorbed degrees of freedom:
----------------------------------------------------------+
-     Absorbed FE | Categories  - Redundant  = Num. Coefs |
------------------+---------------------------------------|
- property_type_i |        10           0          10     |
----------------------------------------------------------+
-(est3 stored)
-
-. eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, absorb(room_type_i)
-(MWFE estimator converged in 1 iterations)
-
-HDFE Linear regression                            Number of obs   =      2,551
-Absorbing 1 HDFE group                            F(   8,   2540) =      98.21
-                                                  Prob > F        =     0.0000
-                                                  R-squared       =     0.5082
-                                                  Adj R-squared   =     0.5063
-                                                  Within R-sq.    =     0.2362
-                                                  Root MSE        =    75.9694
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   1.618557   .9041092     1.79   0.074    -.1543092    3.391423
-host_respo~te |   .0842795   .1436283     0.59   0.557     -.197361      .36592
-host_accept~e |   -.282619   .0770278    -3.67   0.000    -.4336627   -.1315753
-host_is_sup~t |    13.0304   4.432886     2.94   0.003     4.337964    21.72284
-host_identi~d |   5.209076    3.72672     1.40   0.162    -2.098643    12.51679
- accommodates |   23.94749   .9538061    25.11   0.000     22.07717     25.8178
-review_scor~g |   .8633577   .1730784     4.99   0.000     .5239684    1.202747
-reviews_per~h |  -6.168665   .7656228    -8.06   0.000    -7.669974   -4.667357
-        _cons |   32.54057   21.71323     1.50   0.134    -10.03688    75.11801
--------------------------------------------------------------------------------
-
-Absorbed degrees of freedom:
------------------------------------------------------+
- Absorbed FE | Categories  - Redundant  = Num. Coefs |
--------------+---------------------------------------|
- room_type_i |         3           0           3     |
------------------------------------------------------+
-(est4 stored)
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. esttab using "output/table/reg_price.txt", nogaps replace
-(output written to output/table/reg_price.txt)
-
-. eststo clear
-
-. 
-end of do-file
-
-. do "C:\Users\u669074\AppData\Local\Temp\STD01000000.tmp"
-
-. eststo: reg price age host_response_rate host_acceptance_rate host_is_superhos
-> t host_identity_verified accommodates review_scores_rating reviews_per_month
-
-      Source |       SS           df       MS      Number of obs   =     2,551
--------------+----------------------------------   F(8, 2542)      =    225.34
-       Model |  12368742.4         8   1546092.8   Prob > F        =    0.0000
-    Residual |  17441443.4     2,542  6861.30739   R-squared       =    0.4149
--------------+----------------------------------   Adj R-squared   =    0.4131
-       Total |  29810185.8     2,550  11690.2689   Root MSE        =    82.833
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.207109   .9853581     2.24   0.025     .2749225    4.139295
-host_respo~te |   .0204512   .1565699     0.13   0.896    -.2865664    .3274688
-host_accept~e |  -.4427323   .0835516    -5.30   0.000    -.6065685   -.2788961
-host_is_sup~t |   6.032758   4.820613     1.25   0.211     -3.41997    15.48549
-host_identi~d |   1.956839   4.056892     0.48   0.630     -5.99831    9.911988
- accommodates |   34.63103   .8939079    38.74   0.000     32.87816    36.38389
-review_scor~g |   1.073624   .1884236     5.70   0.000     .7041449    1.443104
-reviews_per~h |  -7.548665   .8319554    -9.07   0.000    -9.180045   -5.917286
-        _cons |   4.949387   23.63067     0.21   0.834    -41.38793    51.28671
--------------------------------------------------------------------------------
-(est1 stored)
-
-. eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, absorb(property_type_i)
-(dropped 2 singleton observations)
-(MWFE estimator converged in 1 iterations)
-
-HDFE Linear regression                            Number of obs   =      2,547
-Absorbing 1 HDFE group                            F(   8,   2529) =     226.89
-                                                  Prob > F        =     0.0000
-                                                  R-squared       =     0.4396
-                                                  Adj R-squared   =     0.4358
-                                                  Within R-sq.    =     0.4178
-                                                  Root MSE        =    81.2407
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   2.618105   .9761931     2.68   0.007      .703886    4.532325
-host_respo~te |   .0287424   .1539507     0.19   0.852    -.2731399    .3306247
-host_accept~e |  -.3885913   .0825739    -4.71   0.000    -.5505107    -.226672
-host_is_sup~t |   10.05665   4.752248     2.12   0.034     .7379606    19.37535
-host_identi~d |   1.409686   4.003282     0.35   0.725    -6.440358    9.259731
- accommodates |    34.5078   .8834404    39.06   0.000     32.77546    36.24014
-review_scor~g |   1.032027    .186272     5.54   0.000     .6667661    1.397289
-reviews_per~h |  -7.438297   .8168706    -9.11   0.000      -9.0401   -5.836493
-        _cons |   2.207059   23.33763     0.09   0.925    -43.55576    47.96988
--------------------------------------------------------------------------------
-
-Absorbed degrees of freedom:
----------------------------------------------------------+
-     Absorbed FE | Categories  - Redundant  = Num. Coefs |
------------------+---------------------------------------|
- property_type_i |        10           0          10     |
----------------------------------------------------------+
-(est2 stored)
-
-. eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_supe
-> rhost host_identity_verified accommodates review_scores_rating reviews_per_mon
-> th, absorb(room_type_i)
-(MWFE estimator converged in 1 iterations)
-
-HDFE Linear regression                            Number of obs   =      2,551
-Absorbing 1 HDFE group                            F(   8,   2540) =      98.21
-                                                  Prob > F        =     0.0000
-                                                  R-squared       =     0.5082
-                                                  Adj R-squared   =     0.5063
-                                                  Within R-sq.    =     0.2362
-                                                  Root MSE        =    75.9694
-
--------------------------------------------------------------------------------
-        price |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          age |   1.618557   .9041092     1.79   0.074    -.1543092    3.391423
-host_respo~te |   .0842795   .1436283     0.59   0.557     -.197361      .36592
-host_accept~e |   -.282619   .0770278    -3.67   0.000    -.4336627   -.1315753
-host_is_sup~t |    13.0304   4.432886     2.94   0.003     4.337964    21.72284
-host_identi~d |   5.209076    3.72672     1.40   0.162    -2.098643    12.51679
- accommodates |   23.94749   .9538061    25.11   0.000     22.07717     25.8178
-review_scor~g |   .8633577   .1730784     4.99   0.000     .5239684    1.202747
-reviews_per~h |  -6.168665   .7656228    -8.06   0.000    -7.669974   -4.667357
-        _cons |   32.54057   21.71323     1.50   0.134    -10.03688    75.11801
--------------------------------------------------------------------------------
-
-Absorbed degrees of freedom:
------------------------------------------------------+
- Absorbed FE | Categories  - Redundant  = Num. Coefs |
--------------+---------------------------------------|
- room_type_i |         3           0           3     |
------------------------------------------------------+
-(est3 stored)
-
-. esttab using "output/table/reg_price.txt", nogaps replace
-(output written to output/table/reg_price.txt)
-
-. eststo clear
-
-. 
-end of do-file
-
-. exit, clear
