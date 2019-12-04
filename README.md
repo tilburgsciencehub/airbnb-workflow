@@ -34,7 +34,7 @@ See [Awesome Pipeline](https://github.com/pditommaso/awesome-pipeline) and [Awes
 
 - [Airflow](https://github.com/apache/airflow) by Airbnb/[Azkaban](https://github.com/azkaban/azkaban) by Linkedin: for programmers
 - [Cmake](https://cmake.org/)/[Scons](https://scons.org/): general make tools
-- [Bazel](https://bazel.build): Google's next generation buid system
+- [Bazel](https://bazel.build): Google's next generation build system
 
 
 
@@ -81,4 +81,20 @@ rule clean_raw:
 
 
 ### GNU make
+
+```makefile
+all: download clean_raw audit  # run all 3 programs
+
+download: download.py
+	python download.py
+
+clean_raw: clean.do
+	stata-mp -s do clean.do
+
+rule audit: audit.do
+	stata-mp -s do audit.do
+
+clean:
+	rm *.smcl  # remove all *.smcl by `make clean`
+```
 
