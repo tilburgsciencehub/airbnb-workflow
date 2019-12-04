@@ -1,6 +1,6 @@
 ## README
 
-### Debug snakelike
+### Debug snakemake
 
 [Lachlan’s snakemake-econ-R workshop](https://github.com/lachlandeer/snakemake-econ-r) has the following bugs:
 

@@ -6,8 +6,10 @@ download: download.py
 clean_raw: clean.do
 	stata-mp -s do clean.do
 
-rule audit: audit.do
+audit: audit.do
 	stata-mp -s do audit.do
 
+.PHONY: clean
 clean:
-	rm *.smcl
+	-rm *.smcl
+	
