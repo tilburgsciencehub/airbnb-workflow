@@ -100,6 +100,7 @@ clean:
 
 ### Tree: folders and files
 
+```txt
 18 directories, 40 files
 ├── README.md
 ├── _DS_Store
@@ -159,3 +160,4 @@ clean:
 │       ├── listings.dta
 │       └── reviews.dta
 └── tree.md
+```
