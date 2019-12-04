@@ -1,89 +1,73 @@
--------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/hulai/Github/tisem-airbnb/preclean/code/../audit/log/on_run
-> .log
+       log:  /Users/hulai/Github/tisem-airbnb/preclean/audit/log/on_run.log
   log type:  text
- opened on:   3 Dec 2019, 23:43:38
+ opened on:   4 Dec 2019, 04:15:46
 
 . 
-. use "../temp/listings.dta", clear
+. use "temp/listings.dta", clear
 
 . 
-. estpost tabstat price age host_response_rate host_acceptance_rate host_is_sup
-> erhost host_identity_verified accommodates review_scores_rating reviews_per_m
-> onth, ///
+. estpost tabstat price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verifi
+> ed accommodates review_scores_rating reviews_per_month, ///
 >                 stat(count mean sd min p50 max) c(s)
 
 Summary statistics: count mean sd min p50 max
-     for variables: price age host_response_rate host_acceptance_rate host_is_s
-> uperhost host_identity_verified accommodates review_scores_rating reviews_per
-> _month
+     for variables: price age host_response_rate host_acceptance_rate host_is_superhost host_identity_veri
+> fied accommodates review_scores_rating reviews_per_month
 
-             |  e(count)    e(mean)      e(sd)     e(min)     e(p50) 
--------------+-------------------------------------------------------
-       price |      3573   169.0728    111.677         10        150 
-         age |      3585   2.449468   1.699612   .0027379   2.094456 
-host_resp~te |      3114   94.98908   12.51769          0        100 
-host_accep~e |      3114   84.17309   21.77925          0         94 
-host_is_su~t |      3585   .1135286   .3172821          0          0 
-host_ident~d |      3585   .7260809   .4460302          0          1 
-accommodates |      3585   3.041283   1.778929          1          2 
-review_sco~g |      2772   91.91667   9.531686         20         94 
-reviews_pe~h |      2829   1.970908   2.120561        .01       1.17 
+             |  e(count)    e(mean)      e(sd)     e(min)     e(p50)     e(max) 
+-------------+------------------------------------------------------------------
+       price |      3573   169.0728    111.677         10        150        999 
+         age |      3585   2.449468   1.699612   .0027379   2.094456    7.82204 
+host_resp~te |      3114   94.98908   12.51769          0        100        100 
+host_accep~e |      3114   84.17309   21.77925          0         94        100 
+host_is_su~t |      3585   .1135286   .3172821          0          0          1 
+host_ident~d |      3585   .7260809   .4460302          0          1          1 
+accommodates |      3585   3.041283   1.778929          1          2         16 
+review_sco~g |      2772   91.91667   9.531686         20         94        100 
+reviews_pe~h |      2829   1.970908   2.120561        .01       1.17      19.15 
 
-             |    e(max) 
--------------+-----------
-       price |       999 
-         age |   7.82204 
-host_resp~te |       100 
-host_accep~e |       100 
-host_is_su~t |         1 
-host_ident~d |         1 
-accommodates |        16 
-review_sco~g |       100 
-reviews_pe~h |     19.15 
-
-. esttab . using "../audit/table/sum_listings.txt", cells("count mean(fmt(a3)) 
-> sd(fmt(a3)) min p50 max") replace
-(output written to ../audit/table/sum_listings.txt)
+. esttab . using "audit/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(fmt(a3)) min p50 max") repl
+> ace
+(output written to audit/table/sum_listings.txt)
 
 .                 
 . foreach i of varlist price review_scores_rating reviews_per_month {
   2. hist `i'
-  3. graph export "../audit/figure/`i'.pdf", replace
+  3. graph export "audit/figure/`i'.pdf", replace
   4. }
 (bin=35, start=10, width=28.257143)
-(file ../audit/figure/price.pdf written in PDF format)
+(file audit/figure/price.pdf written in PDF format)
 (bin=34, start=20, width=2.3529412)
-(file ../audit/figure/review_scores_rating.pdf written in PDF format)
+(file audit/figure/review_scores_rating.pdf written in PDF format)
 (bin=34, start=.01, width=.56294118)
-(file ../audit/figure/reviews_per_month.pdf written in PDF format)
+(file audit/figure/reviews_per_month.pdf written in PDF format)
 
 . 
 . scatter price accommodates || lfit price accommodates
 
-. graph export "../audit/figure/pri_accom.pdf", replace
-(file ../audit/figure/pri_accom.pdf written in PDF format)
+. graph export "audit/figure/pri_accom.pdf", replace
+(file audit/figure/pri_accom.pdf written in PDF format)
 
 . scatter price review_scores_rating || lfit price review_scores_rating
 
-. graph export "../audit/figure/pri_rating.pdf", replace
-(file ../audit/figure/pri_rating.pdf written in PDF format)
+. graph export "audit/figure/pri_rating.pdf", replace
+(file audit/figure/pri_rating.pdf written in PDF format)
 
-. scatter review_scores_rating reviews_per_month || lfit review_scores_rating r
-> eviews_per_month
+. scatter review_scores_rating reviews_per_month || lfit review_scores_rating reviews_per_month
 
-. graph export "../audit/figure/rating_review.pdf", replace
-(file ../audit/figure/rating_review.pdf written in PDF format)
+. graph export "audit/figure/rating_review.pdf", replace
+(file audit/figure/rating_review.pdf written in PDF format)
 
 . 
 . 
-. use "../temp/calendar", clear
+. use "temp/calendar", clear
 
 . collapse (sum) available (count) listing_id, by(date)
 
-. export delim using "../audit/table/sum_cal.txt", delim(tab) replace
-file ../audit/table/sum_cal.txt saved
+. export delim using "audit/table/sum_cal.txt", delim(tab) replace
+file audit/table/sum_cal.txt saved
 
 . 
 . gen avail_r = available/listing_id
@@ -95,11 +79,12 @@ file ../audit/table/sum_cal.txt saved
 
 . tsline avail_r
 
-. graph export "../audit/figure/available.pdf", replace
-(file ../audit/figure/available.pdf written in PDF format)
+. graph export "audit/figure/available.pdf", replace
+(file audit/figure/available.pdf written in PDF format)
 
 . 
 . 
 end of do-file
 
 
+. exit, clear

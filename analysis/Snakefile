@@ -2,6 +2,6 @@
 # download data
 rule analysis:
     shell:
-        "stata-mp -b code/analysis.do"
+        "stata-mp -s do analysis.do"
 
 

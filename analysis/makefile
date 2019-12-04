@@ -1,5 +1,5 @@
-analysis: code/analysis.do
-	stata-mp -b code/analysis.do
+analysis: analysis.do
+	stata-mp -s do analysis.do
 
-# clean:
-# 	rm 
+clean:
+	rm *.sm

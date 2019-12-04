@@ -2,14 +2,14 @@
 # download data
 rule download:
     shell:
-        "python code/download.py"
+        "python download.py"
 
 rule clean_raw:
     shell:
-        "stata-mp code/clean.do"
+        "stata-mp -s do clean.do"
 
 rule audit:
     shell:
-        "stata-mp code/audit"
+        "stata-mp -s do audit.do"
 
 

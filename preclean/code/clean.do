@@ -5,9 +5,9 @@
 clear all
 log close
 
-log using "input/clean_raw", text replace
+log using "../input/clean_raw", text replace
 
-import delimited using "input/calendar.csv", delimit(",") varn(1) clear
+import delimited using "../input/calendar.csv", delimit(",") varn(1) clear
 gen temp=date(date,"YMD")
 drop date
 rename temp date
@@ -26,7 +26,7 @@ keep listing_id date price available
 save temp/calendar, replace
 
 
-import excel using "input/listings.xlsx", firstrow clear
+import excel using "../input/listings.xlsx", firstrow clear
 drop A 
 rename id listing_id
 *listing_url-xl_picture_url host_url host_name host_location host_about ///
@@ -59,7 +59,7 @@ rename temp `i'
 
 save temp/listings, replace
 
-import excel using "input/reviews.xlsx", firstrow clear
+import excel using "../input/reviews.xlsx", firstrow clear
 drop A id
 gen temp=date(date,"YMD")
 drop date

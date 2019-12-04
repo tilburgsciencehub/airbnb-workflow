@@ -1,13 +1,13 @@
-download: code/download.py
-	python code/download.py
+download: download.py
+	python download.py
 
 
-clean_raw: code/clean.do
-	stata-mp code/clean.do
+clean_raw: clean.do
+	stata-mp -s do clean.do
 
 
-rule audit: code/audit.do
-	stata-mp code/audit.do
+rule audit: audit.do
+	stata-mp -s do audit.do
 
 # clean:
 # 	rm
