@@ -8,3 +8,6 @@ clean_raw: code/clean.do
 
 rule audit: code/audit.do
 	stata-mp code/audit.do
+
+# clean:
+# 	rm
