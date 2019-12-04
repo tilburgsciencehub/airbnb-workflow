@@ -41,6 +41,44 @@ See [Awesome Pipeline](https://github.com/pditommaso/awesome-pipeline) and [Awes
 ### Data preclean and analysis
 
 1. Install [Kaggle API](https://github.com/Kaggle/kaggle-api) for Python
-2. Add Stata to .bashrc: [Tutorial](https://www.stata.com/support/faqs/mac/advanced-topics/#batch)
-3. 
+2. Add Stata to `/.bashrc`: [Tutorial](https://www.stata.com/support/faqs/mac/advanced-topics/#batch)
+
+
+
+### Snakemake
+
+```makefile
+rule download:
+    shell:
+        "python code/download.py"
+
+rule clean_raw:
+    shell:
+        "stata-mp code/clean.do"
+
+rule audit:
+    shell:
+        "stata-mp code/audit"
+```
+
+More advanced version:
+
+```makefile
+rule download:
+    shell:
+        "python code/download.py"
+
+rule clean_raw:
+		input:
+				"input/calendar.dta"
+				"input/listings.dta"
+		output:
+				""
+    shell:
+        "stata-mp {input} code/clean.do"
+```
+
+
+
+### GNU make
 
