@@ -1,5 +1,6 @@
 # %%
 import pandas as pd
+import os
 import kaggle
 kaggle.api.authenticate()
 
@@ -16,10 +17,11 @@ kaggle.api.dataset_download_files(
 # %%
 listings = pd.read_csv('../input/listings.csv')
 listings.to_excel('../input/listings.xlsx')
-
+os.remove('../input/listings.csv')
 
 # %%
 reviews = pd.read_csv('../input/reviews.csv')
 reviews.to_excel('../input/reviews.xlsx')
+os.remove('../input/reviews.csv')
 
 # %%
