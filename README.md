@@ -49,33 +49,33 @@ See [Awesome Pipeline](https://github.com/pditommaso/awesome-pipeline) and [Awes
 
 ```makefile
 rule download:
-    shell:
-        "python code/download.py"
+	shell:
+		"python code/download.py"
 
 rule clean_raw:
-    shell:
-        "stata-mp code/clean.do"
+	shell:
+  	"stata-mp code/clean.do"
 
 rule audit:
-    shell:
-        "stata-mp code/audit"
+	shell:
+  	"stata-mp code/audit"
 ```
 
 More advanced version:
 
 ```makefile
 rule download:
-    shell:
-        "python code/download.py"
+	shell:
+  	"python code/download.py"
 
 rule clean_raw:
-		input:
-				"input/calendar.dta"
-				"input/listings.dta"
-		output:
-				""
-    shell:
-        "stata-mp {input} code/clean.do"
+	input:
+		"input/calendar.dta"
+		"input/listings.dta"
+	output:
+		""
+  shell:
+  	"stata-mp {input} code/clean.do"
 ```
 
 
