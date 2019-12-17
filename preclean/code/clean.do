@@ -1,15 +1,19 @@
 /* # load ../temp files and clean
 # clean; prep
-# output a final, merged csv file in ..\output\dataset */
+# output a final, merged csv file in ..\output\dataset
+*/
 
 clear all
 cap log close
 
 cap log using "../input/clean_raw", text replace
 
-cap drop mkdir ../temp
+cap mkdir ../temp
 
 cap program drop import_calendar
+
+ERROR
+
 program import_calendar
 	import delimited using "../input/calendar.csv", delimit(",") varn(1) clear
 	gen temp=date(date,"YMD")
@@ -26,9 +30,9 @@ program import_calendar
 		drop `i'
 		rename temp `i'
 		}
-	*keep listing_id date price available
-	*save ../temp/calendar, replace
-
+	keep listing_id date price available
+	save ../temp/calendar, replace
+end
 
 cap program drop import_listings
 program import_listings
@@ -64,6 +68,7 @@ program import_listings
 	}
 
 	save ../temp/listings, replace
+end
 
 cap program drop import_reviews
 program import_reviews
@@ -74,7 +79,10 @@ program import_reviews
 	rename temp date
 	format date %td
 	save ../temp/reviews, replace
+end
 
 import_calendar
 import_listings
 import_reviews
+
+* write to a file, saying I am done.
