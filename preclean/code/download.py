@@ -10,7 +10,7 @@ kaggle.api.dataset_download_files(
     'airbnb/boston', path='../input', unzip=True)
 
 print("Exporting datasets to Excel")
-
+# import of CSV files into STATA may be buggy; transfer via Excel is safer
 for fn in ['listings', 'reviews']:
     print('   ' + fn + '...')
     dat = pd.read_csv('../input/'+ fn + '.csv')
