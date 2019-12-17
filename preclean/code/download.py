@@ -1,27 +1,18 @@
-# %%
 import pandas as pd
 import os
 import kaggle
 kaggle.api.authenticate()
 
-# %%
 # downloads data from kaggle
 # unzip and store three data files in input
+print("Downloading datasets")
 kaggle.api.dataset_download_files(
     'airbnb/boston', path='../input', unzip=True)
 
-# %%
-# calendar = pd.read_csv('preclean/input/calendar.csv')
-# calendar.to_excel('preclean/input/calendar.xlsx')
+print("Exporting datasets to Excel")
 
-# %%
-listings = pd.read_csv('../input/listings.csv')
-listings.to_excel('../input/listings.xlsx')
-os.remove('../input/listings.csv')
-
-# %%
-reviews = pd.read_csv('../input/reviews.csv')
-reviews.to_excel('../input/reviews.xlsx')
-os.remove('../input/reviews.csv')
-
-# %%
+for fn in ['listings', 'reviews']:
+    print('   ' + fn + '...')
+    dat = pd.read_csv('../input/'+ fn + '.csv')
+    dat.to_excel('../input/'+ fn + '.xlsx')
+    os.remove('../input/'+ fn + '.csv')
