@@ -1,102 +1,60 @@
-## README
+## TiSEM reproducible science workflows: AirBnB dataset
 
-### Debug snakemake
+Put project description here.
+You can use multiple lines, but keep
+the width of the text limited to the
+header.
 
-[Lachlan’s snakemake-econ-R workshop](https://github.com/lachlandeer/snakemake-econ-r) has the following bugs:
-
-1. The following object `purrr` is masked from `package:magrittr`
-
-   ```R
-   library(purrr, warn.conflicts = FALSE)
-   ```
-
-2. `Error in make_option(c("-fp", "--filepath"), type = "character", default = NULL,`
-
-   ```R
-   make_option(c("-fp", "--filepath") ...
-   ```
-
-3. no package called `rticles`
-
-   ```R
-   install.packages("rticles")
-   ```
-
-4. Many more bugs...
+Hannes Datta, h.datta@tilburguniversity.edu
+Hulai Zhang, ...
 
 
+### Build instructions
 
-### A collection of pipeline tools
+### Dependencies
 
-See [Awesome Pipeline](https://github.com/pditommaso/awesome-pipeline) and [Awesome Workflow](https://github.com/meirwah/awesome-workflow-engines). Some popular tools:
+Please follow the installation guide on 
+https://hannesdatta.github.io/reproducible-science-guide/.
 
-- [Dagster](https://github.com/dagster-io/dagster)/[Dask](https://github.com/dask/dask)/[Kedro](https://github.com/quantumblacklabs/kedro)/[Pachyderm](https://github.com/pachyderm/pachyderm)/[Reflow](https://github.com/grailbio/reflow): for data analysts
+- Install Python (LINK HERE)
+  o also install the Kaggle package for Python
+  ```pip install kaggle```
+  
+  See also: https://github.com/Kaggle/kaggle-api
 
-- [Airflow](https://github.com/apache/airflow) by Airbnb/[Azkaban](https://github.com/azkaban/azkaban) by Linkedin: for programmers
-- [Cmake](https://cmake.org/)/[Scons](https://scons.org/): general make tools
-- [Bazel](https://bazel.build): Google's next generation build system
+- Install Automation tools (LINK HERE)
 
+- Install R(LINK HERE)
+	- Install the following packages:
 
+    ```
+	packages <- c("data.table", "ggplot2")
 
-### Data preclean and analysis
+    install.packages(packages)
+	```
+- Install Stata (LINK HERE)
+  
+### Directory structure
 
-1. Install [Kaggle API](https://github.com/Kaggle/kaggle-api) for Python
-2. Add Stata to `/.bashrc`: [Tutorial](https://www.stata.com/support/faqs/mac/advanced-topics/#batch)
+@ Hulai, adapt
 
+\raw           Code required to collect/download raw data
+\derived       Data preparation
+\analysis      Data analysis
+\paper         Stores literature reference, paper, and slides
 
+Each directory contains subdirectories,
+    \input (for input files)
+    \output (for final output files)
+    \temp (for any temporary files)
+    \code (for all the code)
+    \audit (for any auditing files)
 
-### Snakemake
-
-```makefile
-rule download:
-	shell:
-		"python code/download.py"
-
-rule clean_raw:
-	shell:
-  	"stata-mp code/clean.do"
-
-rule audit:
-	shell:
-  	"stata-mp code/audit"
-```
-
-More advanced version:
-
-```makefile
-rule download:
-	shell:
-  	"python code/download.py"
-
-rule clean_raw:
-	input:
-		"input/calendar.dta"
-		"input/listings.dta"
-	output:
-		""
-  shell:
-  	"stata-mp {input} code/clean.do"
-```
+The \code directory contains the makefile, with running descriptions
+for each submodule.
 
 
 
-### GNU make
-
-```makefile
-all: download clean_raw audit  # run all 3 programs
-
-download: download.py
-	python download.py
-
-clean_raw: clean.do
-	stata-mp -s do clean.do
-
-rule audit: audit.do
-	stata-mp -s do audit.do
-
-clean:
-	rm *.smcl  # remove all *.smcl by `make clean`
-```
 
 ### Tree: folders and files
 
@@ -161,3 +119,101 @@ clean:
 │       └── reviews.dta
 └── tree.md
 ```
+
+### How to run the project
+
+#### GNU make
+
+Navigate to the project's root directory, open a terminal,
+and run `make`
+
+```makefile
+all: download clean_raw audit  # run all 3 programs
+
+download: download.py
+	python download.py
+
+clean_raw: clean.do
+	stata-mp -s do clean.do
+
+rule audit: audit.do
+	stata-mp -s do audit.do
+
+clean:
+	rm *.smcl  # remove all *.smcl by `make clean`
+```
+
+#### Snakemake
+
+@Hulai, instruction here
+
+```makefile
+rule download:
+	shell:
+		"python code/download.py"
+
+rule clean_raw:
+	shell:
+  	"stata-mp code/clean.do"
+
+rule audit:
+	shell:
+  	"stata-mp code/audit"
+```
+
+More advanced version:
+
+```makefile
+rule download:
+	shell:
+  	"python code/download.py"
+
+rule clean_raw:
+	input:
+		"input/calendar.dta"
+		"input/listings.dta"
+	output:
+		""
+  shell:
+  	"stata-mp {input} code/clean.do"
+```
+
+
+
+
+### Debug snakemake
+
+[Lachlan’s snakemake-econ-R workshop](https://github.com/lachlandeer/snakemake-econ-r) has the following bugs:
+
+1. The following object `purrr` is masked from `package:magrittr`
+
+   ```R
+   library(purrr, warn.conflicts = FALSE)
+   ```
+
+2. `Error in make_option(c("-fp", "--filepath"), type = "character", default = NULL,`
+
+   ```R
+   make_option(c("-fp", "--filepath") ...
+   ```
+
+3. no package called `rticles`
+
+   ```R
+   install.packages("rticles")
+   ```
+
+4. Many more bugs...
+
+
+
+### A collection of pipeline tools
+
+See [Awesome Pipeline](https://github.com/pditommaso/awesome-pipeline) and [Awesome Workflow](https://github.com/meirwah/awesome-workflow-engines). Some popular tools:
+
+- [Dagster](https://github.com/dagster-io/dagster)/[Dask](https://github.com/dask/dask)/[Kedro](https://github.com/quantumblacklabs/kedro)/[Pachyderm](https://github.com/pachyderm/pachyderm)/[Reflow](https://github.com/grailbio/reflow): for data analysts
+
+- [Airflow](https://github.com/apache/airflow) by Airbnb/[Azkaban](https://github.com/azkaban/azkaban) by Linkedin: for programmers
+- [Cmake](https://cmake.org/)/[Scons](https://scons.org/): general make tools
+- [Bazel](https://bazel.build): Google's next generation build system
+
