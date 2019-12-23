@@ -1,34 +1,80 @@
-**/rbin/
-**/raw/
-**/externals/
-*RData
-*pdf
-**/audit
-**/output
-**/temp
-**/zip
-*csv
-*xlsx
-*smcl
-*~*
-*log
-**/html*
-**scratch
-**html
-*.Rhistory
-**/exports
-**zip
-keys.txt
-**.ipynb_checkpoints
-**__pycache__
-**/.snakemake*
-packrat/lib*/
-*.log
-slides/*.gz
-slides/*.snm
-slides/*.toc
-slides/*.nav
-slides/*.out
-slides/*.aux
+# Mac
 .DS_Store
 _DS_Store
+*~*
+
+
+# Folders
+temp/*
+audit/*
+
+# Stata
+*smcl
+
+
+# Python
+**.ipynb_checkpoints
+**__pycache__
+.scrapy
+profile_default/
+ipython_config.py
+
+
+# R
+.Rhistory
+.Rapp.history
+.RData
+packrat/lib*/
+.Rproj.user/
+*_cache/
+/cache/
+**/rbin/
+**/raw/
+
+
+# Latex
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+*.pdf
+
+# **/externals/
+# *RData
+# *pdf
+# **/audit
+# **/output
+# **/zip
+# *csv
+# *xlsx
+# *log
+# **/html*
+# **scratch
+# **html
+# *.Rhistory
+# **/exports
+# **zip
+# keys.txt
+
+# **/.snakemake*
+# *.log
+# slides/*.gz
+# slides/*.snm
+# slides/*.toc
+# slides/*.nav
+# slides/*.out
+# slides/*.aux

@@ -6,13 +6,15 @@
 clear all
 cap log close
 
-cap log using "../input/clean_raw", text replace
-
 cap mkdir ../temp
+foreach i in log figure table {
+	cap mkdir ../output/`i'
+} 
+cap log using "../output/log/clean_raw", text replace
 
 cap program drop import_calendar
 
-ERROR
+* ERROR
 
 program import_calendar
 	import delimited using "../input/calendar.csv", delimit(",") varn(1) clear

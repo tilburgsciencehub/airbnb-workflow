@@ -4,10 +4,12 @@ TEMP_DIR = ../temp
 OUTPUT_DIR = ../output
 INPUT_DIR = ../input
 
-STATA = ${STATA_BIN}  
+# STATA = ${STATA_BIN}  
+STATA = stata-mp
 
 download: $(INPUT_DIR)/calendar.csv $(INPUT_DIR)/listings.xlsx $(INPUT_DIR)/reviews.xlsx
 clean_raw: $(TEMP_DIR)/calendar.dta $(TEMP_DIR)/listings.dta $(TEMP_DIR)/reviews.dta
+audit: $(TEMP_DIR)/calendar.dta $(TEMP_DIR)/listings.dta $(TEMP_DIR)/reviews.dta
 
 $(INPUT_DIR)/calendar.csv $(INPUT_DIR)/listings.xlsx $(INPUT_DIR)/reviews.xlsx: download.py
 	python download.py

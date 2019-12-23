@@ -1,12 +1,8 @@
 ## TiSEM reproducible science workflows: AirBnB dataset
 
-Put project description here.
-You can use multiple lines, but keep
-the width of the text limited to the
-header.
 
 Hannes Datta, h.datta@tilburguniversity.edu
-Hulai Zhang, ...
+Hulai Zhang, h.zhang_4@tilburguniversity.edu
 
 
 ### Build instructions

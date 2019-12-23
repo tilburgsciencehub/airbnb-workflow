@@ -1,21 +1,15 @@
-/* # loads ../output/dataset.do
-# produces some check graphics
-# like number of listings per date
-# summary statics on price
-# ...
-
-# overall goal: data quality
-
-
-# --> produce plots in ../audit
-# produce log txt files with important statistics in ../audit/whatever.txt */
-
 cap ssc install distinct
 cap ssc install estout
 clear all
 cap log close
 
-log using "../audit/log/on_run", text replace
+cap mkdir ../audit
+foreach i in log figure table {
+	cap mkdir ../audit/`i'
+}
+
+
+log using "../audit/log/audit", text replace
 
 use "../temp/listings.dta", clear
 
@@ -24,8 +18,8 @@ estpost tabstat price age host_response_rate host_acceptance_rate host_is_superh
 esttab . using "../audit/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(fmt(a3)) min p50 max") replace
 		
 foreach i of varlist price review_scores_rating reviews_per_month {
-hist `i'
-graph export "../audit/figure/`i'.pdf", replace
+	hist `i'
+	graph export "../audit/figure/`i'.pdf", replace
 }
 
 scatter price accommodates || lfit price accommodates
