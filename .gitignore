@@ -5,11 +5,11 @@ _DS_Store
 
 
 # Folders
-/temp/*
-/audit/*
-/output/*
-/input/*
-/.snakemake/*
+temp/
+audit/
+output/
+input/
+.snakemake/
 
 # Stata
 *.smcl
