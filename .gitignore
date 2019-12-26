@@ -5,7 +5,7 @@ _DS_Store
 
 
 # Folders
-temp/
+**/temp
 audit/
 output/
 input/
@@ -13,7 +13,7 @@ input/
 
 # Stata
 *.smcl
-
+*.txt
 
 # Python
 **.ipynb_checkpoints
