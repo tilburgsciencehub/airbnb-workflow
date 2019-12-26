@@ -12,13 +12,19 @@ Hulai Zhang, h.zhang_4@tilburguniversity.edu
 Please follow the installation guide on 
 https://hannesdatta.github.io/reproducible-science-guide/.
 
-- Install Python (LINK HERE)
-  o also install the Kaggle package for Python
+- Install Python
+  
+  Anaconda is recommended. [Download Anaconda](https://www.anaconda.com/distribution/).
+  
+  - also install the Kaggle package for Python
   ```pip install kaggle```
   
-  See also: https://github.com/Kaggle/kaggle-api
+    See also: https://github.com/Kaggle/kaggle-api
+  
+- Install Automation tools 
 
-- Install Automation tools (LINK HERE)
+  - GNU make: already installed in Mac and Linux operating system.
+  - Snakemake: `pip3 install snakemake`
 
 - Install R(LINK HERE)
 	- Install the following packages:
@@ -27,7 +33,11 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 	packages <- c("data.table", "ggplot2")
 
     install.packages(packages)
+	  ```
 	```
+	
+	```
+	
 - Install Stata (LINK HERE)
   
 ### Directory structure

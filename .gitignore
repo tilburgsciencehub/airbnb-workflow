@@ -5,13 +5,14 @@ _DS_Store
 
 
 # Folders
-temp/*
-audit/*
-output/*
+**/temp/*
+**/audit/*
+**/output/*
+**/input/*
 .snakemake/*
 
 # Stata
-*smcl
+*.smcl
 
 
 # Python
