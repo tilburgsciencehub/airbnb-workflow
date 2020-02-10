@@ -25,7 +25,7 @@ foreach i in log figure table {
 } 
 
 
-* ERROR
+ ERROR
 
 cap program drop analyze_listings
 program analyze_listings
