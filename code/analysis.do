@@ -24,6 +24,8 @@ foreach i in log figure table {
 } 
 
 
+* ERROR
+
 cap program drop analyze_listings
 program analyze_listings
 	use "temp/listings.dta", clear
