@@ -4,7 +4,7 @@ This do file
 */
 
 
-foreach i in distinct estout {
+foreach i in distinct estout mat2txt {
 	cap which `i'
 	if _rc {
 		ssc install `i'

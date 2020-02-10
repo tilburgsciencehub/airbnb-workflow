@@ -4,7 +4,7 @@ This do file
 2. generates summary statistics
 */
 
-foreach i in estout ftools reghdfe {
+foreach i in estout ftools reghdfe mat2txt {
 	cap which `i'
 	if _rc {
 		ssc install `i'
