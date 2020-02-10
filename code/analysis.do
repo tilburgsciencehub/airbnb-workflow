@@ -3,8 +3,9 @@ This do file
 1. implements some regression analysis
 2. generates summary statistics
 */
+
 foreach i in estout ftools reghdfe {
-	which `i'
+	cap which `i'
 	if _rc {
 		ssc install `i'
 	}
@@ -13,9 +14,11 @@ foreach i in estout ftools reghdfe {
 
 clear all
 cap log close
-cap log using "output/log/log", text replace
+cap log using "output/log/analysis", text replace
 
-cap mkdir temp
+foreach i in temp input output {
+	cap mkdir `i'
+} 
 foreach i in log figure table {
 	cap mkdir output/`i'
 } 

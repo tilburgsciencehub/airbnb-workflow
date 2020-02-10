@@ -5,7 +5,7 @@ This do file
 
 
 foreach i in distinct estout {
-	which `i'
+	cap which `i'
 	if _rc {
 		ssc install `i'
 	}
@@ -13,12 +13,14 @@ foreach i in distinct estout {
 
 clear all
 cap log close
-log using "audit/log/log", text replace
 
-cap mkdir audit
+foreach i in temp input output {
+	cap mkdir `i'
+} 
 foreach i in log figure table {
 	cap mkdir audit/`i'
 }
+log using "audit/log/audit", text replace
 
 
 

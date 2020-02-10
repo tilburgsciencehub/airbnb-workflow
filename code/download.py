@@ -7,12 +7,12 @@ kaggle.api.authenticate()
 # unzip and store three data files in input
 print("Downloading datasets")
 kaggle.api.dataset_download_files(
-    'airbnb/boston', path='../input', unzip=True)
+    'airbnb/boston', path='input', unzip=True)
 
 print("Exporting datasets to Excel")
 # import of CSV files into STATA may be buggy; transfer via Excel is safer
 for fn in ['listings', 'reviews']:
     print('   ' + fn + '...')
-    dat = pd.read_csv('../input/'+ fn + '.csv')
-    dat.to_excel('../input/'+ fn + '.xlsx')
-    os.remove('../input/'+ fn + '.csv')
+    dat = pd.read_csv('input/' + fn + '.csv')
+    dat.to_excel('input/' + fn + '.xlsx')
+    os.remove('input/' + fn + '.csv')

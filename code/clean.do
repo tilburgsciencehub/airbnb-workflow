@@ -5,9 +5,11 @@ This do file
 
 clear all
 cap log close
-cap log using "output/log/log", text replace
+cap log using "output/log/clean", text replace
 
-cap mkdir temp
+foreach i in temp input output {
+	cap mkdir `i'
+} 
 foreach i in log figure table {
 	cap mkdir output/`i'
 } 
