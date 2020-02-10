@@ -4,7 +4,7 @@ This do file
 2. generates summary statistics
 */
 
-foreach i in estout ftools reghdfe mat2txt {
+foreach i in ftools reghdfe tabstatmat mat2txt {
 	cap which `i'
 	if _rc {
 		ssc install `i'
@@ -15,6 +15,7 @@ foreach i in estout ftools reghdfe mat2txt {
 clear all
 cap log close
 cap log using "output/log/analysis", text replace
+
 
 foreach i in temp input output {
 	cap mkdir `i'
@@ -30,19 +31,25 @@ cap program drop analyze_listings
 program analyze_listings
 	use "temp/listings.dta", clear
 
-	estpost tabstat price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, ///
-			stat(count mean sd min p50 max) c(s)
-	esttab . using "output/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(fmt(a3)) min p50 max") replace
+	foreach i of varlist price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month {
+		quietly sum `i', detail
+		matrix TABLE1=(nullmat(TABLE1)\(r(p10), r(mean), r(p90), r(sd), r(N)))	
+	}
+	mat2txt, m(TABLE1) saving("output/table/analysis.txt") title("{tab:analysisT1}") replace
+	matrix drop TABLE1
 
 	foreach i of varlist property_type room_type {
 	encode `i', gen(`i'_i) 
 	}
 
-	eststo: reg price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month
-	eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, absorb(property_type_i)
-	eststo: reghdfe price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, absorb(room_type_i)
-	esttab using "output/table/reg_price.txt", nogaps replace
-	eststo clear
+	reg price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month
+	matrix TABLE2=(nullmat(TABLE2),(_b[age] \ _se[age] \  _b[host_acceptance_rate] \ _se[host_acceptance_rate] \  _b[accommodates] \ _se[accommodates] \ e(r2) \ e(N) ))
+	reghdfe price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, absorb(property_type_i)
+	matrix TABLE2=(nullmat(TABLE2),(_b[age] \ _se[age] \  _b[host_acceptance_rate] \ _se[host_acceptance_rate] \  _b[accommodates] \ _se[accommodates] \ e(r2) \ e(N) ))
+	reghdfe price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, absorb(room_type_i)
+	matrix TABLE2=(nullmat(TABLE2),(_b[age] \ _se[age] \  _b[host_acceptance_rate] \ _se[host_acceptance_rate] \  _b[accommodates] \ _se[accommodates] \ e(r2) \ e(N) ))
+	mat2txt, m(TABLE2) saving("output/table/analysis.txt") title("{tab:analysisT2}") append
+	matrix drop TABLE2
 end
 
 cap program drop analyze_calendar
@@ -57,9 +64,12 @@ program analyze_calendar
 	graph export "output/figure/available.pdf", replace
 	restore
 
-	eststo: probit available i.dweek
-	esttab using "output/table/probit_avail.txt", nogaps replace
-	eststo clear
+	probit available i.dweek
+	matrix TABLE3=(nullmat(TABLE3),(_b[2.dweek] \ _se[2.dweek] \_b[3.dweek] \ _se[3.dweek] \_b[4.dweek] \ _se[4.dweek] \_b[5.dweek] \ _se[5.dweek] \_b[6.dweek] \ _se[6.dweek] \_b[7.dweek] \ _se[7.dweek] \ e(ll) \ e(N) ))
+	mat2txt, m(TABLE3) saving("output/table/analysis.txt") title("{tab:analysisT3}") append
+	matrix drop TABLE3
+	
+	
 end
 
 

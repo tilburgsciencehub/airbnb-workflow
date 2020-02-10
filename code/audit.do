@@ -4,7 +4,7 @@ This do file
 */
 
 
-foreach i in distinct estout mat2txt {
+foreach i in distinct tabstatmat mat2txt {
 	cap which `i'
 	if _rc {
 		ssc install `i'
@@ -26,9 +26,13 @@ log using "audit/log/audit", text replace
 
 use "temp/listings.dta", clear
 
-estpost tabstat price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, ///
-		stat(count mean sd min p50 max) c(s)
-esttab . using "audit/table/sum_listings.txt", cells("count mean(fmt(a3)) sd(fmt(a3)) min p50 max") replace
+foreach i of varlist price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month {
+	quietly sum `i', detail
+	matrix TABLE1=(nullmat(TABLE1)\(r(p10), r(mean), r(p90), r(sd), r(N)))	
+}
+mat2txt, m(TABLE1) saving("audit/table/audit.txt") title("{tab:auditT1}") replace
+matrix drop TABLE1
+
 		
 foreach i of varlist price review_scores_rating reviews_per_month {
 	hist `i'
@@ -45,7 +49,10 @@ graph export "audit/figure/rating_review.pdf", replace
 
 use "temp/calendar", clear
 collapse (sum) available (count) listing_id, by(date)
-export delim using "audit/table/sum_cal.txt", delim(tab) replace
+mkmat available listing_id, matrix(TABLE2)
+mat2txt, m(TABLE2) saving("audit/table/audit.txt") title("{tab:auditT2}") append
+matrix drop TABLE2
+
 
 gen avail_r = available/listing_id
 
