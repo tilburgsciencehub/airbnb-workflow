@@ -9,7 +9,7 @@ _DS_Store
 audit/
 output/
 input/
-.snakemake/
+temp/
 
 # Stata
 *.smcl
@@ -73,11 +73,3 @@ packrat/lib*/
 # **zip
 # keys.txt
 
-# **/.snakemake*
-# *.log
-# slides/*.gz
-# slides/*.snm
-# slides/*.toc
-# slides/*.nav
-# slides/*.out
-# slides/*.aux

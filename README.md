@@ -1,11 +1,11 @@
-## TiSEM reproducible science workflows: AirBnB dataset
+# TiSEM reproducible science workflows: AirBnB dataset
 
 Hannes Datta, h.datta@tilburguniversity.edu
 Hulai Zhang, h.zhang_4@tilburguniversity.edu
 
 
 
-### Dependencies
+## Dependencies
 
 Please follow the installation guide on 
 https://hannesdatta.github.io/reproducible-science-guide/.
@@ -35,29 +35,44 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 
 Open your command line tool:
 
-- Check that your present working directory is  `tisem-airbnb` by typing `pwd`
+- Check whether your present working directory is  `tisem-airbnb` by typing `pwd`
+
   - if not, type `cd yourpath/tisem-airbnb` to change your directory to `tisem-airbnb`
+
 - Type `make` in the command line.
 
+  
+
+## Directory structure
+
+Below is the directory structure for the Airbnb project.
+
+1. **audit** is the folder where we put the resulting log/tables/figures of audit program. It has three sub-folders: **figure**, **log**, and **table**.
+2. **code** is the folder where we put all programs.
+3. **input** is the folder where we put all raw data.
+4. **output** is the folder where we put results, including the generated figures in sub-folder **figure**, log files in sub-folder **log**, and tables in sub-folder **table**.
+5. **paper** is the folder where we put the literature.
+6. **temp** is the folder where we put the temporary files, such as some intermediate datasets. We may delete these filed in the end.
+7. **writing** is the folder where we put our writings, such as tex files.
+
+`makefile` is stored in the present woring directory.
+
+```text
+├── audit
+│   ├── figure
+│   ├── log
+│   └── table
+├── code
+├── input
+├── output
+│   ├── figure
+│   ├── log
+│   └── table
+├── paper
+├── temp
+└── writing
+```
 
 
-### Directory structure
-
-@ Hulai, adapt
-
-\raw           Code required to collect/download raw data
-\derived       Data preparation
-\analysis      Data analysis
-\paper         Stores literature reference, paper, and slides
-
-Each directory contains subdirectories,
-    \input (for input files)
-    \output (for final output files)
-    \temp (for any temporary files)
-    \code (for all the code)
-    \audit (for any auditing files)
-
-The \code directory contains the makefile, with running descriptions
-for each submodule.
 
 

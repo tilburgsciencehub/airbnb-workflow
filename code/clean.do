@@ -1,23 +1,20 @@
-/* # load ../temp files and clean
-# clean; prep
-# output a final, merged csv file in ..\output\dataset
+/* 
+This do file
+1. clean the raw data
 */
 
 clear all
 cap log close
+cap log using "output/log/log", text replace
 
-cap mkdir ../temp
+cap mkdir temp
 foreach i in log figure table {
-	cap mkdir ../output/`i'
+	cap mkdir output/`i'
 } 
-cap log using "../output/log/clean_raw", text replace
 
 cap program drop import_calendar
-
-* ERROR
-
 program import_calendar
-	import delimited using "../input/calendar.csv", delimit(",") varn(1) clear
+	import delimited using "input/calendar.csv", delimit(",") varn(1) clear
 	gen temp=date(date,"YMD")
 	drop date
 	rename temp date
@@ -33,12 +30,12 @@ program import_calendar
 		rename temp `i'
 		}
 	keep listing_id date price available
-	save ../temp/calendar, replace
+	save temp/calendar, replace
 end
 
 cap program drop import_listings
 program import_listings
-	import excel using "../input/listings.xlsx", firstrow clear
+	import excel using "input/listings.xlsx", firstrow clear
 	drop A 
 	rename id listing_id
 	*listing_url-xl_picture_url host_url host_name host_location host_about ///
@@ -69,18 +66,18 @@ program import_listings
 	rename temp `i'
 	}
 
-	save ../temp/listings, replace
+	save temp/listings, replace
 end
 
 cap program drop import_reviews
 program import_reviews
-	import excel using "../input/reviews.xlsx", firstrow clear
+	import excel using "input/reviews.xlsx", firstrow clear
 	drop A id
 	gen temp=date(date,"YMD")
 	drop date
 	rename temp date
 	format date %td
-	save ../temp/reviews, replace
+	save temp/reviews, replace
 end
 
 import_calendar
