@@ -570,7 +570,7 @@ Host Response Rate
 \begin_layout Plain Layout
 
 \size small
-host_acceptance_rate
+Host Acceptance Rate
 \end_layout
 
 \end_inset
@@ -649,7 +649,7 @@ host_acceptance_rate
 \begin_layout Plain Layout
 
 \size small
-host_is_superhost
+Super Host
 \end_layout
 
 \end_inset
@@ -728,7 +728,7 @@ host_is_superhost
 \begin_layout Plain Layout
 
 \size small
-host_identity_verified
+Verified Host
 \end_layout
 
 \end_inset
@@ -807,7 +807,7 @@ host_identity_verified
 \begin_layout Plain Layout
 
 \size small
-accommodates
+Accommodates
 \end_layout
 
 \end_inset
@@ -886,7 +886,7 @@ accommodates
 \begin_layout Plain Layout
 
 \size small
-review_scores_rating
+Review Scores
 \end_layout
 
 \end_inset
@@ -963,7 +963,7 @@ review_scores_rating
 \begin_inset Text
 
 \begin_layout Plain Layout
-reviews_per_month
+Reviews Per Month
 \end_layout
 
 \end_inset

@@ -1,7 +1,0 @@
-# put workflow script there
-# download data
-rule analysis:
-    shell:
-        "stata-mp -s do analysis.do"
-
-
