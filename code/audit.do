@@ -12,15 +12,15 @@ foreach i in distinct tabstatmat mat2txt {
 }
 
 clear all
-cap log close
+*cap log close
 
-foreach i in temp input output {
+foreach i in temp input output audit {
 	cap mkdir `i'
 } 
 foreach i in log figure table {
 	cap mkdir audit/`i'
 }
-log using "audit/log/audit", text replace
+*log using "audit/log/audit", text replace
 
 
 

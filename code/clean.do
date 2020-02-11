@@ -4,8 +4,8 @@ This do file
 */
 
 clear all
-cap log close
-cap log using "output/log/clean", text replace
+*cap log close
+*cap log using "output/log/clean", text replace
 
 foreach i in temp input output {
 	cap mkdir `i'
@@ -86,4 +86,4 @@ import_calendar
 import_listings
 import_reviews
 
-* write to a file, saying I am done.
+

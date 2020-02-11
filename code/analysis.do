@@ -13,8 +13,8 @@ foreach i in ftools reghdfe tabstatmat mat2txt {
 
 
 clear all
-cap log close
-cap log using "output/log/analysis", text replace
+*cap log close
+*cap log using "output/log/analysis", text replace
 
 
 foreach i in temp input output {
@@ -25,7 +25,7 @@ foreach i in log figure table {
 } 
 
 
- ERROR
+* ERROR
 
 cap program drop analyze_listings
 program analyze_listings
@@ -75,3 +75,5 @@ end
 
 analyze_listings
 analyze_calendar
+
+

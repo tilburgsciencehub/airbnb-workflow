@@ -1,5 +1,6 @@
 import re
 import os
+import argparse
 
 
 def error_check(_log):
@@ -15,16 +16,22 @@ def error_check(_log):
     for l in f.readlines():
         m = re.findall(r'r\(\d{1,4}\)', l)
         if len(m) != 0:
-            print('Error: ' + m[0])
+            print(_log + ': Error ' + m[0])
             break
 
     if len(m) == 0:
-        print('Success.')
+        print(_log + ': Success')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("logfile", type=str,
+                        help="check the errors of stata program")
+    args = parser.parse_args()
+    return args.logfile
 
 
 if __name__ == '__main__':
-    log1 = os.path.join('./output/log', 'clean.log')
-    error_check(log1)
-
-    log2 = os.path.join('./output/log', 'analysis.log')
-    error_check(log2)
+    logfile = parse_args()
+    _log = os.path.join('.', logfile)
+    error_check(_log)
