@@ -54,6 +54,7 @@ packrat/lib*/
 *-blx.bib
 *.run.xml
 *.pdf
+**final.lyx
 
 # **/externals/
 # *RData

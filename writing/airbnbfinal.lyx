@@ -127,11 +127,16 @@ Advice me cousin an spring of needed.
 \end_layout
 
 \begin_layout Standard
-host_response_rate host_acceptance_rate host_is_superhost host_identity_verified
- accommodates review_scores_rating reviews_per_month
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -150,33 +155,13 @@ name "tab:analysisT1"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
 
 
 \end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
 
 \begin_layout Plain Layout
 \noindent
@@ -903,12 +888,7 @@ reviews_per_month
 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
@@ -916,7 +896,7 @@ reviews_per_month
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Box Frameless
 position "t"
@@ -943,7 +923,16 @@ status open
 \size footnotesize
 Notes
 \shape default
-: 
+:
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -963,6 +952,16 @@ In no impression assistance contrasted.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -981,33 +980,13 @@ name "tab:analysisT2"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
 
 
 \end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
 
 \begin_layout Plain Layout
 \noindent
@@ -1416,12 +1395,7 @@ N
 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
@@ -1429,7 +1403,7 @@ N
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Box Frameless
 position "t"
@@ -1464,6 +1438,11 @@ Notes
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Now indulgence dissimilar for his thoroughly has terminated.
  Agreement offending commanded my an.
@@ -1475,6 +1454,16 @@ Now indulgence dissimilar for his thoroughly has terminated.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -1493,7 +1482,7 @@ name "tab:analysisT3"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
@@ -1501,7 +1490,7 @@ name "tab:analysisT3"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Box Frameless
 position "t"
@@ -1869,7 +1858,7 @@ N
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset VSpace defskip
 \end_inset
@@ -1877,7 +1866,7 @@ N
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \align center
 \begin_inset Box Frameless
 position "t"
@@ -1909,6 +1898,15 @@ Notes
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
