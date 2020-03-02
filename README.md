@@ -11,23 +11,24 @@ Please follow the installation guide on
 https://hannesdatta.github.io/reproducible-science-guide/.
 
 - Install Python
-  
+
   - Anaconda is recommended. [Download Anaconda](https://www.anaconda.com/distribution/).
-  
-  - also install and set up the Kaggle package for Python. [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for setting up.
-  
+  - check availability: type `anaconda --version` in the command line.
+- Install Kaggle package
+
+  - [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for installation and setup.
 - Install Automation tools 
-
   - GNU make: already installed in Mac and Linux OS. [Download GNU Make](https://www.gnu.org/software/make/) for Windows OS.
-
+  - check availability: type `make --version` in the command line.
 - Install Stata
-  
+
   - making Stata available via the command line. [Instruction](https://hannesdatta.github.io/reproducible-science-guide/setup/stata/) for adding Stata to path.
-  
+  - check availability: type `stata --version` in the command line.
 - Install Perl
 
   - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
   - Make sure Perl available via the command line.
+  - check availability: type `perl -v` in the command line.
 
 
 
@@ -35,7 +36,7 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 
 Open your command line tool:
 
-- Check whether your present working directory is  `tisem-airbnb` by typing `pwd`
+- Check whether your present working directory is  `tisem-airbnb` by typing `pwd` in terminal
 
   - if not, type `cd yourpath/tisem-airbnb` to change your directory to `tisem-airbnb`
 

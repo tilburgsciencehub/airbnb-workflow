@@ -6,6 +6,7 @@ import argparse
 def error_check(_log):
 
     if not _log:
+        print('No log file being input.')
         return
 
     if not _log.endswith('.log'):
@@ -17,6 +18,7 @@ def error_check(_log):
         m = re.findall(r'r\(\d{1,4}\)', l)
         if len(m) != 0:
             print(_log + ': Error ' + m[0])
+            raise Exception
             break
 
     if len(m) == 0:
