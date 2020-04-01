@@ -76,43 +76,6 @@
 \begin_body
 
 \begin_layout Standard
-Now for manners use has company believe parlors.
- Least nor party who wrote while did.
- Excuse formed as is agreed admire so on result parish.
- Put use set uncommonly announcing and travelling.
- Allowance sweetness direction to as necessary.
- Principle oh explained excellent do my suspected conveying in.
- Excellent you did therefore perfectly supposing described.
- 
-\end_layout
-
-\begin_layout Standard
-Call park out she wife face mean.
- Invitation excellence imprudence understood it continuing to.
- Ye show done an into.
- Fifteen winding related may hearted colonel are way studied.
- County suffer twenty or marked no moment in he.
- Meet shew or said like he.
- Valley silent cannot things so remain oh to elinor.
- Far merits season better tended any age hunted.
- 
-\end_layout
-
-\begin_layout Standard
-Advice me cousin an spring of needed.
- Tell use paid law ever yet new.
- Meant to learn of vexed if style allow he there.
- Tiled man stand tears ten joy there terms any widen.
- Procuring continued suspicion its ten.
- Pursuit brother are had fifteen distant has.
- Early had add equal china quiet visit.
- Appear an manner as no limits either praise in.
- In in written on charmed justice is amiable farther besides.
- Law insensible middletons unsatiable for apartments boy delightful unreserved.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
@@ -222,7 +185,7 @@ N
 \begin_inset Text
 
 \begin_layout Plain Layout
-price
+Price
 \end_layout
 
 \end_inset
@@ -288,7 +251,7 @@ price
 \begin_inset Text
 
 \begin_layout Plain Layout
-age
+Age
 \end_layout
 
 \end_inset
@@ -354,7 +317,7 @@ age
 \begin_inset Text
 
 \begin_layout Plain Layout
-host_response_rate
+%Host Response
 \end_layout
 
 \end_inset
@@ -420,7 +383,7 @@ host_response_rate
 \begin_inset Text
 
 \begin_layout Plain Layout
-host_acceptance_rate
+%Host Acceptance
 \end_layout
 
 \end_inset
@@ -486,7 +449,7 @@ host_acceptance_rate
 \begin_inset Text
 
 \begin_layout Plain Layout
-host_is_superhost
+1[Superhost]
 \end_layout
 
 \end_inset
@@ -552,7 +515,7 @@ host_is_superhost
 \begin_inset Text
 
 \begin_layout Plain Layout
-host_identity_verified
+1[Identity Verified]
 \end_layout
 
 \end_inset
@@ -618,7 +581,7 @@ host_identity_verified
 \begin_inset Text
 
 \begin_layout Plain Layout
-accommodates
+Accommodates
 \end_layout
 
 \end_inset
@@ -663,6 +626,72 @@ accommodates
 
 \size small
 #4#
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+#0#
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Review Scores
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+#3#
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+#3#
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+#3#
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+#3#
 \end_layout
 
 \end_inset
@@ -684,73 +713,7 @@ accommodates
 \begin_inset Text
 
 \begin_layout Plain Layout
-review_scores_rating
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-#3#
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-#3#
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-#3#
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-#3#
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\size small
-#0#
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-reviews_per_month
+Reviews Per Month
 \end_layout
 
 \end_inset
@@ -853,7 +816,51 @@ status open
 \size footnotesize
 Notes
 \shape default
-:
+: This table shows the summary statistics for all Airbnb room in the sample
+ that's scraped on September 7th, 2016.
+ 
+\emph on
+Price
+\emph default
+ is the listed price on the scrape day for the renting room.
+ 
+\emph on
+Age
+\emph default
+ is the difference between the scrape day and the first host day.
+ 
+\emph on
+%Host Response
+\emph default
+ and 
+\emph on
+%Host Acceptance
+\emph default
+ are the host response rate and host acceptance rate respectively.
+ 
+\emph on
+1[Superhost]
+\emph default
+ and 
+\emph on
+1[Identity Verified] 
+\emph default
+are the dummy variables: whether the host is the super host, and whether
+ the identity of the host is verified.
+ 
+\emph on
+Accommodates
+\emph default
+ repersents how many people can be accommodated in the renting room.
+ 
+\emph on
+Review Scores
+\emph default
+ and 
+\emph on
+Reviews Per Month
+\emph default
+ are the average review scores and the number of reviews per month.
 \end_layout
 
 \end_inset
@@ -868,17 +875,6 @@ Notes
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-In no impression assistance contrasted.
- Manners she wishing justice hastily new anxious.
- At discovery discourse departure objection we.
- Few extensive add delighted tolerably sincerity her.
- Law ought him least enjoy decay one quick court.
- Expect warmly its tended garden him esteem had remove off.
- Effects dearest staying now sixteen nor improve.
- 
 \end_layout
 
 \begin_layout Standard
@@ -895,7 +891,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Regression results for price on charateristics
+Regression results of price on charateristics
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:analysisT2"
@@ -1059,7 +1055,7 @@ Age
 \begin_inset Text
 
 \begin_layout Plain Layout
-host_acceptance_rate
+%Host Acceptance
 \end_layout
 
 \end_inset
@@ -1147,7 +1143,7 @@ host_acceptance_rate
 \begin_inset Text
 
 \begin_layout Plain Layout
-accommodates
+Accommodates
 \end_layout
 
 \end_inset
@@ -1231,7 +1227,7 @@ accommodates
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1240,7 +1236,7 @@ R^2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1251,7 +1247,7 @@ R^2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1262,7 +1258,7 @@ R^2
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1360,27 +1356,34 @@ status open
 \size footnotesize
 Notes
 \shape default
-:
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Now indulgence dissimilar for his thoroughly has terminated.
- Agreement offending commanded my an.
- Change wholly say why eldest period.
- Are projection put celebrated particular unreserved joy unsatiable its.
- In then dare good am rose bred or.
- On am in nearer square wanted.
+: The table presents the simple linear modle estimates of the effects of
+ room characteristics on renting price.
  
+\emph on
+Age
+\emph default
+ is the difference between the scrape day and the first host day.
+ 
+\emph on
+%Host Acceptance
+\emph default
+ is the host acceptance rate.
+ 
+\emph on
+Accommodates
+\emph default
+ repersents how many people can be accommodated in the renting room.
+ Standard errors are shown below the estimates in parentheses.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1397,7 +1400,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Summary statistics
+Probit regression results of price on week days 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:analysisT3"
@@ -1733,7 +1736,7 @@ Day 7
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1742,7 +1745,7 @@ Ln Likelihood
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1823,7 +1826,23 @@ status open
 \size footnotesize
 Notes
 \shape default
-:
+: The table presents the probit regression estimates of the coefficients
+ of week days on reting price.
+ 
+\emph on
+Day 2
+\emph default
+ to 
+\emph on
+Day 7
+\emph default
+ are dummy variables for the week days.
+ 
+\emph on
+Day 1
+\emph default
+ (Monday) is taken as benckmark.
+ Standard errors are shown below the estimates in parentheses.
 \end_layout
 
 \end_inset
