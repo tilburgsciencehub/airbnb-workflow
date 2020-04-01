@@ -7,12 +7,16 @@ clear all
 *cap log close
 *cap log using "output/log/clean", text replace
 
+cap mkdir generated
+cap mkdir generated/data
 foreach i in temp input output {
-	cap mkdir `i'
+	cap mkdir generated/data/`i'
 } 
 foreach i in log figure table {
-	cap mkdir output/`i'
+	cap mkdir generated/data/output/`i'
 } 
+
+global DIR_DATA "generated/data"
 
 cap program drop import_calendar
 program import_calendar
@@ -32,7 +36,7 @@ program import_calendar
 		rename temp `i'
 		}
 	keep listing_id date price available
-	save temp/calendar, replace
+	save $DIR_DATA/temp/calendar, replace
 end
 
 cap program drop import_listings
@@ -68,7 +72,7 @@ program import_listings
 	rename temp `i'
 	}
 
-	save temp/listings, replace
+	save $DIR_DATA/temp/listings, replace
 end
 
 cap program drop import_reviews
@@ -79,7 +83,7 @@ program import_reviews
 	drop date
 	rename temp date
 	format date %td
-	save temp/reviews, replace
+	save $DIR_DATA/temp/reviews, replace
 end
 
 import_calendar

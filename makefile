@@ -1,71 +1,60 @@
 all: download clean_raw audit analysis tex_writing
 
-CODE_DIR = code
-TEMP_DIR = temp
-OUTPUT_DIR = output
-INPUT_DIR = input
-AUDIT_DIR = audit
-WRITING_DIR = writing
+# directories
+INPUT = input
+SRC = src
+GEN = generated
+# sub-directories
+DATA = data
+ANALYSIS = analysis
+PAPER = paper
+# sub-sub-directories
+AUDIT = audit
+TEMP = temp
+OUTPUT = output
+# sub-sub-sub-directories
+LOG = log
+FIGURE = figure
+TABLE = table
 
-# STATA = ${STATA_BIN}  
-STATA = stata
+# STATA_BIN as STATA environmental variable
+STATA = ${STATA_BIN}  
 
-download: $(INPUT_DIR)/calendar.csv $(INPUT_DIR)/listings.xlsx $(INPUT_DIR)/reviews.xlsx
-clean_raw: $(TEMP_DIR)/calendar.dta $(TEMP_DIR)/listings.dta $(TEMP_DIR)/reviews.dta
-audit: $(AUDIT_DIR)/log/audit.log
-analysis: $(OUTPUT_DIR)/log/analysis.log
-tex_writing: $(WRITING_DIR)/airbnbfinal.lyx $(OUTPUT_DIR)/table/analysis.txt
+download: $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx
+clean_raw: $(TEMP_DATA)/calendar.dta $(TEMP_DATA)/listings.dta $(TEMP_DATA)/reviews.dta
+audit: $(AUDIT_DATA)/$(LOG)/audit.log
+analysis: $(OUTPUT)/$(LOG)/analysis.log
+tex_writing: $(WRITING)/airbnbfinal.lyx $(OUTPUT)/$(TABLE)/analysis.txt
 
-$(INPUT_DIR)/calendar.csv $(INPUT_DIR)/listings.xlsx $(INPUT_DIR)/reviews.xlsx: $(CODE_DIR)/download.py
-	python $(CODE_DIR)/download.py
+# download
+$(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx: $(SRC)/$(DATA)/download.py
+	python $(SRC)/$(DATA)/download.py
 
-$(TEMP_DIR)/calendar.dta $(TEMP_DIR)/listings.dta $(TEMP_DIR)/reviews.dta: $(CODE_DIR)/clean.do
-	$(STATA) -e do $(CODE_DIR)/clean.do
-	mv clean.log $(OUTPUT_DIR)/log
-	python $(CODE_DIR)/error_check.py $(OUTPUT_DIR)/log/clean.log
+# clean_raw
+$(GEN)/$(DATA)/$(TEMP)/calendar.dta $(GEN)/$(DATA)/$(TEMP)/listings.dta $(GEN)/$(DATA)/$(TEMP)/reviews.dta: $(SRC)/$(DATA)/clean.do
+	$(STATA) -e do $(SRC)/$(DATA)/clean.do
+	mv clean.log $(GEN)/$(DATA)/$(OUTPUT)/$(LOG)
+	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(DATA)/$(OUTPUT)/$(LOG)/clean.log
 
-$(AUDIT_DIR)/log/audit.log: $(CODE_DIR)/audit.do
-	$(STATA) -e do $(CODE_DIR)/audit.do
-	mv audit.log $(AUDIT_DIR)/log
-	python $(CODE_DIR)/error_check.py $(AUDIT_DIR)/log/audit.log
+# audit
+$(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log: $(SRC)/$(DATA)/audit.do
+	$(STATA) -e do $(SRC)/$(DATA)/audit.do
+	mv audit.log $(GEN)/$(DATA)/$(AUDIT)/$(LOG)
+	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log
 
-$(OUTPUT_DIR)/log/analysis.log: $(CODE_DIR)/analysis.do
-	$(STATA) -e do $(CODE_DIR)/analysis.do
-	mv analysis.log $(OUTPUT_DIR)/log
-	python $(CODE_DIR)/error_check.py $(OUTPUT_DIR)/log/analysis.log	
+# analysis
+$(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log: $(SRC)/$(ANALYSIS)/analysis.do
+	$(STATA) -e do $(SRC)/$(ANALYSIS)/analysis.do
+	mv analysis.log $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)
+	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log	
 
-$(WRITING_DIR)/airbnbfinal.lyx $(OUTPUT_DIR)/table/analysis.txt: $(CODE_DIR)/table2fill.py $(CODE_DIR)/tablefill.pl
-	python $(CODE_DIR)/table2fill.py $(OUTPUT_DIR)/table/analysis.txt
-	perl $(CODE_DIR)/tablefill.pl -i $(OUTPUT_DIR)/table/analysis.txt -t "$(WRITING_DIR)/airbnbedit.lyx" -o "$(WRITING_DIR)/airbnbfinal.lyx"
+# tex_writing
+$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/analysis.txt: $(SRC)/$(PAPER)/table2fill.py $(SRC)/$(PAPER)/tablefill.pl
+	python $(SRC)/$(PAPER)/table2fill.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt
+	perl $(SRC)/$(PAPER)/tablefill.pl -i $(GEN)/$(PAPER)/$(TEMP)/analysis.txt -t "$(SRC)/$(PAPER)/airbnbedit.lyx" -o "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
 
 
 .PHONY: clean
 clean:
-	RM -f -r "$(TEMP_DIR)"
-	RM -f -r "$(OUTPUT_DIR)"
-	RM -f -r "$(INPUT_DIR)"
-	
-
-# all: analysis lyx_writing tex_writing
-
-# TEMP_DIR = ../temp
-# OUTPUT_DIR = ../output
-# INPUT_DIR = ../../preclean/temp
-
-# # STATA = ${STATA_BIN}  
-# STATA = stata
-
-# analysis: $(INPUT_DIR)/calendar.dta $(INPUT_DIR)/listings.dta $(INPUT_DIR)/reviews.dta
-# lyx_writing: $
-# tex_writing: $
-
-# analysis: analysis.do
-# 	$(STATA) -s do analysis.do
-
-
-# lyx_writing: tablefill.pl
-	
-
-# .PHONY: clean
-# clean:
-# 	-rm *.smcl
+	RM -f -r "$(GEN)"
+	RM -f -r "$(INPUT)"

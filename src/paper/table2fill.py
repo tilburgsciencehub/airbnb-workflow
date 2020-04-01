@@ -31,7 +31,7 @@ def parse_args():
 if __name__ == '__main__':
     tablefile = parse_args()
     _table = os.path.join('.', tablefile)
-    _out = os.path.join('.', 'output/table/temp.txt')
+    _out = os.path.join('.', 'generated/paper/temp/analysis.txt')
     print(_table)
     print(_out)
     table2fill(_table, _out)
