@@ -19,6 +19,7 @@ TABLE = table
 
 # STATA_BIN as STATA environmental variable
 STATA = ${STATA_BIN}  
+LYX = ${lyx}
 
 # summary
 download: $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx
@@ -54,6 +55,8 @@ $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log: $(SRC)/$(ANALYSIS)/analysis.do
 $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/analysis.txt: $(SRC)/$(PAPER)/table2fill.py $(SRC)/$(PAPER)/tablefill.pl $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt $(SRC)/$(PAPER)/airbnbedit.lyx
 	python $(SRC)/$(PAPER)/table2fill.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt
 	perl $(SRC)/$(PAPER)/tablefill.pl -i $(GEN)/$(PAPER)/$(TEMP)/analysis.txt -t "$(SRC)/$(PAPER)/airbnbedit.lyx" -o "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
+	$(LYX) -e pdf2 "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
+	rm "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
 
 
 .PHONY: clean

@@ -23,14 +23,17 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 - Install Stata
 
   - making Stata available via the command line. [Instruction](https://hannesdatta.github.io/reproducible-science-guide/setup/stata/) for adding Stata to path.
-  - check availability: type `stata --version` in the command line.
+  - check availability: type `$stata --version` in the command line.
 - Install Perl
 
   - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
   - Make sure Perl available via the command line.
   - check availability: type `perl -v` in the command line.
 
-
+- Install Lyx
+  - Lyx is an open source document processor based on the LaTeX. [Download Lyx](https://www.lyx.org/Download).
+  - make sure Lyx available via the command line.
+  - check availability: type `$lyx` in the command line.
 
 ## How to run it
 
