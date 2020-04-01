@@ -20,12 +20,14 @@ TABLE = table
 # STATA_BIN as STATA environmental variable
 STATA = ${STATA_BIN}  
 
+# summary
 download: $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx
-clean_raw: $(TEMP_DATA)/calendar.dta $(TEMP_DATA)/listings.dta $(TEMP_DATA)/reviews.dta
-audit: $(AUDIT_DATA)/$(LOG)/audit.log
-analysis: $(OUTPUT)/$(LOG)/analysis.log
-tex_writing: $(WRITING)/airbnbfinal.lyx $(OUTPUT)/$(TABLE)/analysis.txt
+clean_raw: $(GEN)/$(DATA)/$(TEMP)/calendar.dta $(GEN)/$(DATA)/$(TEMP)/listings.dta $(GEN)/$(DATA)/$(TEMP)/reviews.dta
+audit: $(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log
+analysis: $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log
+tex_writing: $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/analysis.txt
 
+## In detail
 # download
 $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx: $(SRC)/$(DATA)/download.py
 	python $(SRC)/$(DATA)/download.py

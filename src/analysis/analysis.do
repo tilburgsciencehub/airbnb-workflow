@@ -16,26 +16,29 @@ clear all
 *cap log close
 *cap log using "output/log/analysis", text replace
 
-
-foreach i in temp input output {
-	cap mkdir `i'
+cap mkdir generated
+cap mkdir generated/analysis
+foreach i in audit temp input output {
+	cap mkdir generated/analysis/`i'
 } 
 foreach i in log figure table {
-	cap mkdir output/`i'
+	cap mkdir generated/analysis/output/`i'
 } 
 
+
+global DIR_DATA "generated/analysis"
 
 * ERROR
 
 cap program drop analyze_listings
 program analyze_listings
-	use "temp/listings.dta", clear
+	use "generated/data/temp/listings.dta", clear
 
 	foreach i of varlist price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month {
 		quietly sum `i', detail
 		matrix TABLE1=(nullmat(TABLE1)\(r(p10), r(mean), r(p90), r(sd), r(N)))	
 	}
-	mat2txt, m(TABLE1) saving("output/table/analysis.txt") title("{tab:analysisT1}") replace
+	mat2txt, m(TABLE1) saving("$DIR_DATA/output/table/analysis.txt") title("{tab:analysisT1}") replace
 	matrix drop TABLE1
 
 	foreach i of varlist property_type room_type {
@@ -48,25 +51,25 @@ program analyze_listings
 	matrix TABLE2=(nullmat(TABLE2),(_b[age] \ _se[age] \  _b[host_acceptance_rate] \ _se[host_acceptance_rate] \  _b[accommodates] \ _se[accommodates] \ e(r2) \ e(N) ))
 	reghdfe price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month, absorb(room_type_i)
 	matrix TABLE2=(nullmat(TABLE2),(_b[age] \ _se[age] \  _b[host_acceptance_rate] \ _se[host_acceptance_rate] \  _b[accommodates] \ _se[accommodates] \ e(r2) \ e(N) ))
-	mat2txt, m(TABLE2) saving("output/table/analysis.txt") title("{tab:analysisT2}") append
+	mat2txt, m(TABLE2) saving("$DIR_DATA/output/table/analysis.txt") title("{tab:analysisT2}") append
 	matrix drop TABLE2
 end
 
 cap program drop analyze_calendar
 program analyze_calendar
-	use "temp/calendar.dta", clear
+	use "generated/data/temp/calendar.dta", clear
 	gen dweek = dow(date)
 	replace dweek = 7 if dweek==0
 
 	preserve
 	collapse (mean) available, by(dweek)
 	twoway bar available dweek
-	graph export "output/figure/available.pdf", replace
+	graph export "$DIR_DATA/output/figure/available.pdf", replace
 	restore
 
 	probit available i.dweek
 	matrix TABLE3=(nullmat(TABLE3),(_b[2.dweek] \ _se[2.dweek] \_b[3.dweek] \ _se[3.dweek] \_b[4.dweek] \ _se[4.dweek] \_b[5.dweek] \ _se[5.dweek] \_b[6.dweek] \ _se[6.dweek] \_b[7.dweek] \ _se[7.dweek] \ e(ll) \ e(N) ))
-	mat2txt, m(TABLE3) saving("output/table/analysis.txt") title("{tab:analysisT3}") append
+	mat2txt, m(TABLE3) saving("$DIR_DATA/output/table/analysis.txt") title("{tab:analysisT3}") append
 	matrix drop TABLE3
 	
 	

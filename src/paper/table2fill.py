@@ -35,5 +35,5 @@ if __name__ == '__main__':
     print(_table)
     print(_out)
     table2fill(_table, _out)
-    os.remove(_table)
-    os.rename(_out, _table)
+    # os.remove(_table)
+    # os.rename(_out, _table)
