@@ -85,6 +85,7 @@ Make sure `makefile` is put in the present working directory. The directory stru
   - **audit**: put the resulting log/tables/figures of audit program. It has three sub-folders: **figure**, **log**, and **table**.
   - **temp** : put the temporary files, such as some intermediate datasets. We may delete these filed in the end.
   - **output**: put results, including the generated figures in sub-folder **figure**, log files in sub-folder **log**, and tables in sub-folder **table**.
+  - **input**: put all temporary input files
 - **input**: all raw data.
 - **src**: all source codes.
   - Three parts: **data**, **analysis**, and **paper** (including tex files).
