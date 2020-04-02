@@ -1231,7 +1231,10 @@ Accommodates
 \begin_inset Text
 
 \begin_layout Plain Layout
-R^2
+\begin_inset Formula $R^{2}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1400,7 +1403,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Probit regression results of price on week days 
+Probit regression results of 
+\emph on
+1[Available]
+\emph default
+ on week days 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:analysisT3"
@@ -1456,7 +1463,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Dep: Available
+Dep: 1[Available]
 \end_layout
 
 \end_inset
@@ -1827,7 +1834,13 @@ status open
 Notes
 \shape default
 : The table presents the probit regression estimates of the coefficients
- of week days on reting price.
+ of week days on the dummy 
+\size default
+\emph on
+1[Available]
+\size footnotesize
+\emph default
+.
  
 \emph on
 Day 2

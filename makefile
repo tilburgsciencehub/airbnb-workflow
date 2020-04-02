@@ -19,7 +19,7 @@ TABLE = table
 
 # STATA_BIN as STATA environmental variable
 STATA = ${STATA_BIN}  
-LYX = ${lyx}
+LYX = ${LYX_BIN}
 
 # summary
 download: $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx

@@ -18,12 +18,17 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 
   - [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for installation and setup.
 - Install Automation tools 
-  - GNU make: already installed in Mac and Linux OS. [Download GNU Make](https://www.gnu.org/software/make/) for Windows OS.
+  - GNU make: already installed in Mac and Linux OS. [Download Make](http://gnuwin32.sourceforge.net/packages/make.htm) for Windows OS and install.
+  - Windows OS users only: make `Make` available via the command line. 
+    - Right Click on `Computer`
+    - Go to `Property`, and click `Advanced System Settings `
+    - Choose `Environment Variables`, and choose `Path` under the system variables, click `edit`
+    - Add the bin of `Make`
   - check availability: type `make --version` in the command line.
 - Install Stata
 
   - making Stata available via the command line. [Instruction](https://hannesdatta.github.io/reproducible-science-guide/setup/stata/) for adding Stata to path.
-  - check availability: type `$stata --version` in the command line.
+  - check availability: type `$STATA_BIN --version` in the command line.
 - Install Perl
 
   - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
