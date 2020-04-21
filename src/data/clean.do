@@ -8,9 +8,11 @@ clear all
 *cap log using "output/log/clean", text replace
 
 cap mkdir generated
-cap mkdir generated/data
-foreach i in temp input output {
-	cap mkdir generated/data/`i'
+foreach j in data paper {
+	cap mkdir generated/`j'
+	foreach i in temp input output {
+		cap mkdir generated/`j'/`i'
+	}
 } 
 foreach i in log figure table {
 	cap mkdir generated/data/output/`i'
