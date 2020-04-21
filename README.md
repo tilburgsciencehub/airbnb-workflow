@@ -38,7 +38,7 @@ https://hannesdatta.github.io/reproducible-science-guide/.
 - Install Lyx
   - Lyx is an open source document processor based on the LaTeX. [Download Lyx](https://www.lyx.org/Download).
   - make sure Lyx available via the command line.
-  - check availability: type `$lyx` in the command line.
+  - check availability: type `$LYX_BIN` in the command line.
 
 ## How to run it
 
