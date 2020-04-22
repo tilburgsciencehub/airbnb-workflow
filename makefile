@@ -30,7 +30,8 @@ tex_writing: $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/a
 
 ## In detail
 # download
-$(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx: $(SRC)/$(DATA)/download.py
+$(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx: $(SRC)/$(DATA)/package_check.py $(SRC)/$(DATA)/download.py
+	python $(SRC)/$(DATA)/package_check.py
 	python $(SRC)/$(DATA)/download.py
 
 # clean_raw
@@ -52,11 +53,11 @@ $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log: $(SRC)/$(ANALYSIS)/analysis.do
 	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log	
 
 # tex_writing
-$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/analysis.txt: $(SRC)/$(PAPER)/table2fill.py $(SRC)/$(PAPER)/tablefill.pl $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt $(SRC)/$(PAPER)/airbnbedit.lyx
+$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.pdf $(GEN)/$(PAPER)/$(TEMP)/analysis.txt: $(SRC)/$(PAPER)/table2fill.py $(SRC)/$(PAPER)/tablefill.pl $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt $(SRC)/$(PAPER)/airbnbedit.lyx
 	python $(SRC)/$(PAPER)/table2fill.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt
 	perl $(SRC)/$(PAPER)/tablefill.pl -i $(GEN)/$(PAPER)/$(TEMP)/analysis.txt -t "$(SRC)/$(PAPER)/airbnbedit.lyx" -o "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
 	$(LYX) -e pdf2 "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
-	rm "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
+#	rm "$(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx"
 
 
 .PHONY: clean
