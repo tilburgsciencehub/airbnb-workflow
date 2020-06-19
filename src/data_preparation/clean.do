@@ -7,19 +7,19 @@ clear all
 *cap log close
 *cap log using "output/log/clean", text replace
 
-cap mkdir generated
+cap mkdir gen
 foreach j in data_preparation analysis paper {
-	cap mkdir generated/`j'
+	cap mkdir gen/`j'
 	foreach i in temp input output {
-		cap mkdir generated/`j'/`i'
+		cap mkdir gen/`j'/`i'
 	}
 } 
 foreach i in log figure table {
-	cap mkdir generated/data_preparation/output/`i'
-	cap mkdir generated/analysis/output/`i'
+	cap mkdir gen/data_preparation/output/`i'
+	cap mkdir gen/analysis/output/`i'
 } 
 
-global DIR_DATA "generated/data_preparation"
+global DIR_DATA "gen/data_preparation"
 
 cap program drop import_calendar
 program import_calendar

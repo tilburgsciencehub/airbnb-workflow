@@ -58,7 +58,7 @@ Make sure `makefile` is put in the present working directory. The directory stru
 
 ```text
 ├── data
-├── generated
+├── gen
 │   ├── analysis
 │   │   ├── input
 │   │   ├── output
@@ -87,7 +87,7 @@ Make sure `makefile` is put in the present working directory. The directory stru
     └── paper
 ```
 
-- **generated**: all generated files such as tables, figures, logs.
+- **gen**: all generated files such as tables, figures, logs.
   - Three parts: **data_preparation**, **analysis**, and **paper**.
   - **audit**: put the resulting log/tables/figures of audit program. It has three sub-folders: **figure**, **log**, and **table**.
   - **temp** : put the temporary files, such as some intermediate datasets. We may delete these filed in the end.

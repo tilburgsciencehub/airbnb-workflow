@@ -14,16 +14,16 @@ foreach i in distinct tabstatmat mat2txt {
 clear all
 *cap log close
 
-cap mkdir generated
-cap mkdir generated/data_preparation
+cap mkdir gen
+cap mkdir gen/data_preparation
 foreach i in temp output audit {
-	cap mkdir generated/data_preparation/`i'
+	cap mkdir gen/data_preparation/`i'
 } 
 foreach i in log figure table {
-	cap mkdir generated/data_preparation/audit/`i'
+	cap mkdir gen/data_preparation/audit/`i'
 }
 
-global DIR_DATA "generated/data_preparation"
+global DIR_DATA "gen/data_preparation"
 
 
 use "$DIR_DATA/temp/listings.dta", clear

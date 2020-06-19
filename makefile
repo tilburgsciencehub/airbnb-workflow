@@ -3,7 +3,7 @@ all: download clean_raw audit analysis tex_writing
 # directories
 DATA = data
 SRC = src
-GEN = generated
+GEN = gen
 # sub-directories
 DATA_PREP = data_preparation
 ANALYSIS = analysis

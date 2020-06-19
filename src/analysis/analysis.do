@@ -16,13 +16,13 @@ clear all
 *cap log close
 *cap log using "output/log/analysis", text replace
 
-global DIR_DATA "generated/analysis"
+global DIR_DATA "gen/analysis"
 
 * ERROR
 
 cap program drop analyze_listings
 program analyze_listings
-	use "generated/data_preparation/temp/listings.dta", clear
+	use "gen/data_preparation/temp/listings.dta", clear
 
 	foreach i of varlist price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month {
 		quietly sum `i', detail
@@ -47,7 +47,7 @@ end
 
 cap program drop analyze_calendar
 program analyze_calendar
-	use "generated/data_preparation/temp/calendar.dta", clear
+	use "gen/data_preparation/temp/calendar.dta", clear
 	gen dweek = dow(date)
 	replace dweek = 7 if dweek==0
 
