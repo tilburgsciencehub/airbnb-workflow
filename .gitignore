@@ -8,7 +8,7 @@ _DS_Store
 **/audit/
 **/output/
 data/
-generated/
+gen/
 **/temp/
 
 # Stata
