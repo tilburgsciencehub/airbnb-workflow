@@ -6,10 +6,12 @@ _DS_Store
 
 # Folders
 **/audit/
+**/input/
 **/output/
 data/
 gen/
 **/temp/
+
 
 # Stata
 *.smcl
