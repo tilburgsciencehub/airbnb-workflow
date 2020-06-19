@@ -15,15 +15,15 @@ clear all
 *cap log close
 
 cap mkdir generated
-cap mkdir generated/data
+cap mkdir generated/data_preparation
 foreach i in temp output audit {
-	cap mkdir generated/data/`i'
+	cap mkdir generated/data_preparation/`i'
 } 
 foreach i in log figure table {
-	cap mkdir generated/data/audit/`i'
+	cap mkdir generated/data_preparation/audit/`i'
 }
 
-global DIR_DATA "generated/data"
+global DIR_DATA "generated/data_preparation"
 
 
 use "$DIR_DATA/temp/listings.dta", clear

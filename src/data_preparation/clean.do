@@ -8,21 +8,22 @@ clear all
 *cap log using "output/log/clean", text replace
 
 cap mkdir generated
-foreach j in data paper {
+foreach j in data_preparation analysis paper {
 	cap mkdir generated/`j'
 	foreach i in temp input output {
 		cap mkdir generated/`j'/`i'
 	}
 } 
 foreach i in log figure table {
-	cap mkdir generated/data/output/`i'
+	cap mkdir generated/data_preparation/output/`i'
+	cap mkdir generated/analysis/output/`i'
 } 
 
-global DIR_DATA "generated/data"
+global DIR_DATA "generated/data_preparation"
 
 cap program drop import_calendar
 program import_calendar
-	import delimited using "input/calendar.csv", delimit(",") varn(1) clear
+	import delimited using "data/calendar.csv", delimit(",") varn(1) clear
 	gen temp=date(date,"YMD")
 	drop date
 	rename temp date
@@ -43,7 +44,7 @@ end
 
 cap program drop import_listings
 program import_listings
-	import excel using "input/listings.xlsx", firstrow clear
+	import excel using "data/listings.xlsx", firstrow clear
 	drop A 
 	rename id listing_id
 	*listing_url-xl_picture_url host_url host_name host_location host_about ///
@@ -79,7 +80,7 @@ end
 
 cap program drop import_reviews
 program import_reviews
-	import excel using "input/reviews.xlsx", firstrow clear
+	import excel using "data/reviews.xlsx", firstrow clear
 	drop A id
 	gen temp=date(date,"YMD")
 	drop date

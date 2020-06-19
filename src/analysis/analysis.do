@@ -16,23 +16,13 @@ clear all
 *cap log close
 *cap log using "output/log/analysis", text replace
 
-cap mkdir generated
-cap mkdir generated/analysis
-foreach i in audit temp input output {
-	cap mkdir generated/analysis/`i'
-} 
-foreach i in log figure table {
-	cap mkdir generated/analysis/output/`i'
-} 
-
-
 global DIR_DATA "generated/analysis"
 
 * ERROR
 
 cap program drop analyze_listings
 program analyze_listings
-	use "generated/data/temp/listings.dta", clear
+	use "generated/data_preparation/temp/listings.dta", clear
 
 	foreach i of varlist price age host_response_rate host_acceptance_rate host_is_superhost host_identity_verified accommodates review_scores_rating reviews_per_month {
 		quietly sum `i', detail
@@ -57,7 +47,7 @@ end
 
 cap program drop analyze_calendar
 program analyze_calendar
-	use "generated/data/temp/calendar.dta", clear
+	use "generated/data_preparation/temp/calendar.dta", clear
 	gen dweek = dow(date)
 	replace dweek = 7 if dweek==0
 

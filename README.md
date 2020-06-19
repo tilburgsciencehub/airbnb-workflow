@@ -57,16 +57,16 @@ Open your command line tool:
 Make sure `makefile` is put in the present working directory. The directory structure for the Airbnb project  is shown below.
 
 ```text
+├── data
 ├── generated
 │   ├── analysis
-│   │   ├── audit
 │   │   ├── input
 │   │   ├── output
 │   │   │   ├── figure
 │   │   │   ├── log
 │   │   │   └── table
 │   │   └── temp
-│   ├── data
+│   ├── data_preparation
 │   │   ├── audit
 │   │   │   ├── figure
 │   │   │   ├── log
@@ -78,25 +78,24 @@ Make sure `makefile` is put in the present working directory. The directory stru
 │   │   │   └── table
 │   │   └── temp
 │   └── paper
-│       ├── audit
+│       ├── input
 │       ├── output
 │       └── temp
-├── input
 └── src
     ├── analysis
-    ├── data
+    ├── data_preparation
     └── paper
 ```
 
 - **generated**: all generated files such as tables, figures, logs.
-  - Three parts: **data**, **analysis**, and **paper**.
+  - Three parts: **data_preparation**, **analysis**, and **paper**.
   - **audit**: put the resulting log/tables/figures of audit program. It has three sub-folders: **figure**, **log**, and **table**.
   - **temp** : put the temporary files, such as some intermediate datasets. We may delete these filed in the end.
   - **output**: put results, including the generated figures in sub-folder **figure**, log files in sub-folder **log**, and tables in sub-folder **table**.
   - **input**: put all temporary input files
-- **input**: all raw data.
+- **data**: all raw data.
 - **src**: all source codes.
-  - Three parts: **data**, **analysis**, and **paper** (including tex files).
+  - Three parts: **data_preparation**, **analysis**, and **paper** (including tex files).
 
 
 

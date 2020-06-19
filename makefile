@@ -1,11 +1,11 @@
 all: download clean_raw audit analysis tex_writing
 
 # directories
-INPUT = input
+DATA = data
 SRC = src
 GEN = generated
 # sub-directories
-DATA = data
+DATA_PREP = data_preparation
 ANALYSIS = analysis
 PAPER = paper
 # sub-sub-directories
@@ -18,39 +18,40 @@ FIGURE = figure
 TABLE = table
 
 # STATA_BIN as STATA environmental variable
+# LYX_BIN as LYX environmental variable
 STATA = ${STATA_BIN}  
 LYX = ${LYX_BIN}
 
 # summary
-download: $(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx
-clean_raw: $(GEN)/$(DATA)/$(TEMP)/calendar.dta $(GEN)/$(DATA)/$(TEMP)/listings.dta $(GEN)/$(DATA)/$(TEMP)/reviews.dta
-audit: $(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log
+download: $(DATA)/calendar.csv $(DATA)/listings.xlsx $(DATA)/reviews.xlsx
+clean_raw: $(GEN)/$(DATA_PREP)/$(TEMP)/calendar.dta $(GEN)/$(DATA_PREP)/$(TEMP)/listings.dta $(GEN)/$(DATA_PREP)/$(TEMP)/reviews.dta
+audit: $(GEN)/$(DATA_PREP)/$(AUDIT)/$(LOG)/audit.log
 analysis: $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log
 tex_writing: $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(TEMP)/analysis.txt
 
 ## In detail
 # download
-$(INPUT)/calendar.csv $(INPUT)/listings.xlsx $(INPUT)/reviews.xlsx: $(SRC)/$(DATA)/package_check.py $(SRC)/$(DATA)/download.py
-	python $(SRC)/$(DATA)/package_check.py
-	python $(SRC)/$(DATA)/download.py
+$(DATA)/calendar.csv $(DATA)/listings.xlsx $(DATA)/reviews.xlsx: $(SRC)/$(DATA_PREP)/package_check.py $(SRC)/$(DATA_PREP)/download.py
+	python $(SRC)/$(DATA_PREP)/package_check.py
+	python $(SRC)/$(DATA_PREP)/download.py
 
 # clean_raw
-$(GEN)/$(DATA)/$(TEMP)/calendar.dta $(GEN)/$(DATA)/$(TEMP)/listings.dta $(GEN)/$(DATA)/$(TEMP)/reviews.dta: $(SRC)/$(DATA)/clean.do
-	$(STATA) -e do $(SRC)/$(DATA)/clean.do
-	mv clean.log $(GEN)/$(DATA)/$(OUTPUT)/$(LOG)
-	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(DATA)/$(OUTPUT)/$(LOG)/clean.log
+$(GEN)/$(DATA_PREP)/$(TEMP)/calendar.dta $(GEN)/$(DATA_PREP)/$(TEMP)/listings.dta $(GEN)/$(DATA_PREP)/$(TEMP)/reviews.dta: $(SRC)/$(DATA_PREP)/clean.do
+	$(STATA) -e do $(SRC)/$(DATA_PREP)/clean.do
+	mv clean.log $(GEN)/$(DATA_PREP)/$(OUTPUT)/$(LOG)
+	python $(SRC)/$(DATA_PREP)/error_check.py $(GEN)/$(DATA_PREP)/$(OUTPUT)/$(LOG)/clean.log
 
 # audit
-$(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log: $(SRC)/$(DATA)/audit.do
-	$(STATA) -e do $(SRC)/$(DATA)/audit.do
-	mv audit.log $(GEN)/$(DATA)/$(AUDIT)/$(LOG)
-	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(DATA)/$(AUDIT)/$(LOG)/audit.log
+$(GEN)/$(DATA_PREP)/$(AUDIT)/$(LOG)/audit.log: $(SRC)/$(DATA_PREP)/audit.do
+	$(STATA) -e do $(SRC)/$(DATA_PREP)/audit.do
+	mv audit.log $(GEN)/$(DATA_PREP)/$(AUDIT)/$(LOG)
+	python $(SRC)/$(DATA_PREP)/error_check.py $(GEN)/$(DATA_PREP)/$(AUDIT)/$(LOG)/audit.log
 
 # analysis
 $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log: $(SRC)/$(ANALYSIS)/analysis.do
 	$(STATA) -e do $(SRC)/$(ANALYSIS)/analysis.do
 	mv analysis.log $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)
-	python $(SRC)/$(DATA)/error_check.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log	
+	python $(SRC)/$(DATA_PREP)/error_check.py $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(LOG)/analysis.log	
 
 # tex_writing
 $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.pdf $(GEN)/$(PAPER)/$(TEMP)/analysis.txt: $(SRC)/$(PAPER)/table2fill.py $(SRC)/$(PAPER)/tablefill.pl $(GEN)/$(ANALYSIS)/$(OUTPUT)/$(TABLE)/analysis.txt $(SRC)/$(PAPER)/airbnbedit.lyx
@@ -63,4 +64,4 @@ $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.lyx $(GEN)/$(PAPER)/$(OUTPUT)/airbnbfinal.
 .PHONY: clean
 clean:
 	RM -f -r "$(GEN)"
-	RM -f -r "$(INPUT)"
+	RM -f -r "$(DATA)"
