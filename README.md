@@ -8,7 +8,7 @@ Hulai Zhang, h.zhang_4@tilburguniversity.edu
 ## Dependencies
 
 Please follow the installation guide on 
-https://hannesdatta.github.io/reproducible-science-guide/.
+https://tilburgsciencehub.com/examples/tisem-airbnb-template/tisem-airbnb-template/.
 
 - Install Python
 
@@ -27,7 +27,7 @@ https://hannesdatta.github.io/reproducible-science-guide/.
   - check availability: type `make --version` in the command line.
 - Install Stata
 
-  - making Stata available via the command line. [Instruction](https://hannesdatta.github.io/reproducible-science-guide/setup/stata/) for adding Stata to path.
+  - making Stata available via the command line. [Instruction](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/stata/) for adding Stata to path.
   - check availability: type `$STATA_BIN --version` in the command line.
 - Install Perl
 
