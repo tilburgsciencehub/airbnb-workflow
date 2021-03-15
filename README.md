@@ -1,11 +1,13 @@
-# TiSEM reproducible science workflows: AirBnB dataset
+# Reproducible research workflow with public AirBnB Data
 
 Hannes Datta, h.datta@tilburguniversity.edu
 Hulai Zhang, h.zhang_4@tilburguniversity.edu
 
+## Toolkit
 
+To illustrate the versality of automating one's research, we are using various tools (R, Python, STATA, PERL and Latex/Lyx) in this workflow!
 
-## Dependencies
+## How to get started
 
 Please follow the installation guide on 
 https://tilburgsciencehub.com/examples/tisem-airbnb-template/tisem-airbnb-template/.
@@ -40,7 +42,7 @@ https://tilburgsciencehub.com/examples/tisem-airbnb-template/tisem-airbnb-templa
   - make sure Lyx available via the command line.
   - check availability: type `$LYX_BIN` in the command line.
 
-## How to run it
+## How to run the workflow
 
 Open your command line tool:
 
@@ -50,11 +52,10 @@ Open your command line tool:
 
 - Type `make` in the command line.
 
-  
 
 ## Directory structure
 
-Make sure `makefile` is put in the present working directory. The directory structure for the Airbnb project  is shown below.
+Make sure `makefile` is put in the present working directory. The directory structure for the workflow is shown below.
 
 ```text
 ├── data
