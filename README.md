@@ -5,51 +5,41 @@ Hulai Zhang, h.zhang_4@tilburguniversity.edu
 
 ## Toolkit
 
-To illustrate the versality of automating one's research, we are using various tools (R, Python, STATA, PERL and Latex/Lyx) in this workflow!
+To illustrate the versatility of automating one's research, we are using various tools (R, Python, STATA, PERL and TeX/LyX) in this workflow!
 
 ## How to get started
 
-Please follow the installation guide on 
-https://tilburgsciencehub.com/examples/tisem-airbnb-template/tisem-airbnb-template/.
-
-- Install Python
-
+- Install [Python](https://tilburgsciencehub.com/get/python/).
   - Anaconda is recommended. [Download Anaconda](https://www.anaconda.com/distribution/).
   - check availability: type `anaconda --version` in the command line.
-- Install Kaggle package
-
+- Install Kaggle package.
   - [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for installation and setup.
-- Install Automation tools 
+- Install [Automation tools](https://tilburgsciencehub.com/get/make/).
   - GNU make: already installed in Mac and Linux OS. [Download Make](http://gnuwin32.sourceforge.net/packages/make.htm) for Windows OS and install.
-  - Windows OS users only: make `Make` available via the command line. 
+  - Windows OS users only: make `Make` available via the command line.
     - Right Click on `Computer`
     - Go to `Property`, and click `Advanced System Settings `
     - Choose `Environment Variables`, and choose `Path` under the system variables, click `edit`
     - Add the bin of `Make`
   - check availability: type `make --version` in the command line.
-- Install Stata
-
-  - making Stata available via the command line. [Instruction](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/stata/) for adding Stata to path.
+- Install [Stata](https://tilburgsciencehub.com/get/stata/).
+  - making Stata available via the command line. [Instruction](https://tilburgsciencehub.com/get/stata/) for adding Stata to path.
   - check availability: type `$STATA_BIN --version` in the command line.
-- Install Perl
-
+- Install [Perl](https://tilburgsciencehub.com/get/perl/).
   - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
-  - Make sure Perl available via the command line.
+  - Make sure Perl available via the command line. [Instruction](https://tilburgsciencehub.com/get/perl/) for adding Perl to path.
   - check availability: type `perl -v` in the command line.
-
-- Install Lyx
-  - Lyx is an open source document processor based on the LaTeX. [Download Lyx](https://www.lyx.org/Download).
-  - make sure Lyx available via the command line.
+- Install [LyX](https://tilburgsciencehub.com/get/latex/).
+  - LyX is an open source document processor based on the LaTeX. [Download LyX](https://www.lyx.org/Download).
+  - make sure LyX available via the command line. [Instruction](https://tilburgsciencehub.com/get/latex/) for adding LyX to path.
   - check availability: type `$LYX_BIN` in the command line.
 
 ## How to run the workflow
 
 Open your command line tool:
 
-- Check whether your present working directory is  `tisem-airbnb` by typing `pwd` in terminal
-
-  - if not, type `cd yourpath/tisem-airbnb` to change your directory to `tisem-airbnb`
-
+- Check whether your present working directory is `airbnb-workflow` by typing `pwd` in terminal
+  - if not, type `cd yourpath/airbnb-workflow` to change your directory to `airbnb-workflow`
 - Type `make` in the command line.
 
 
@@ -97,7 +87,3 @@ Make sure `makefile` is put in the present working directory. The directory stru
 - **data**: all raw data.
 - **src**: all source codes.
   - Three parts: **data_preparation**, **analysis**, and **paper** (including tex files).
-
-
-
-
