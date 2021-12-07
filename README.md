@@ -12,7 +12,8 @@ To illustrate the versatility of automating one's research, we are using various
 - Install [Python](https://tilburgsciencehub.com/get/python/).
   - Anaconda is recommended. [Download Anaconda](https://www.anaconda.com/distribution/).
   - check availability: type `anaconda --version` in the command line.
-- Install Kaggle package.
+- Install the Python Package [TableFill](https://mcaceresb.github.io/tablefill/): `pip install git+https://github.com/mcaceresb/tablefill`
+- Install the Kaggle package.
   - [Kaggle API](https://github.com/Kaggle/kaggle-api) instruction for installation and setup.
 - Install [Automation tools](https://tilburgsciencehub.com/get/make/).
   - GNU make: already installed in Mac and Linux OS. [Download Make](http://gnuwin32.sourceforge.net/packages/make.htm) for Windows OS and install.
@@ -25,10 +26,6 @@ To illustrate the versatility of automating one's research, we are using various
 - Install [Stata](https://tilburgsciencehub.com/get/stata/).
   - making Stata available via the command line. [Instruction](https://tilburgsciencehub.com/get/stata/) for adding Stata to path.
   - check availability: type `$STATA_BIN --version` in the command line.
-- Install [Perl](https://tilburgsciencehub.com/get/perl/).
-  - Perl is already installed in Mac and Linux OS. [Download Perl](https://www.perl.org/get.html) for Windows OS.
-  - Make sure Perl available via the command line. [Instruction](https://tilburgsciencehub.com/get/perl/) for adding Perl to path.
-  - check availability: type `perl -v` in the command line.
 - Install [LyX](https://tilburgsciencehub.com/get/latex/).
   - LyX is an open source document processor based on the LaTeX. [Download LyX](https://www.lyx.org/Download).
   - make sure LyX available via the command line. [Instruction](https://tilburgsciencehub.com/get/latex/) for adding LyX to path.
